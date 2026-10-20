@@ -997,6 +997,16 @@ a.footer-link:hover, .h5.footer-mail:hover { color: var(--orange); }
 }
 .kimmys-footer-name em { font-family: var(--font-italic); font-style: italic; color: var(--orange); }
 
+/* ---------- Keep the car centered in every photo crop ---------- */
+img[src*="life-1"] { object-position: 50% 62%; }
+img[src*="life-2"] { object-position: 28% 60%; }
+img[src*="life-3"] { object-position: 50% 55%; }
+img[src*="life-4"] { object-position: 50% 74%; }
+img[src*="life-5"] { object-position: 50% 62%; }
+img[src*="life-6"] { object-position: 50% 58%; }
+img[src*="life-7"] { object-position: 50% 58%; }
+img[src*="life-8"] { object-position: 50% 70%; }
+
 /* ---------- Reveal helper (JS adds .ix-ready) ---------- */
 .ix-ready [data-reveal] { opacity: 0; }
 
@@ -1092,6 +1102,14 @@ a.footer-link:hover, .h5.footer-mail:hover { color: var(--orange); }
   .left-content-wrap { height: auto; }
   .tab-text-content-wrap { position: static; opacity: 1; pointer-events: auto; height: auto; gap: 32px; padding-bottom: 48px; }
 
+  .tab-text-content-wrap .model-tab-image-wrap.d-none {
+    display: block;
+    position: static;
+    opacity: 1;
+    height: 240px;
+    border-radius: 8px;
+    overflow: hidden;
+  }
   .tab-count-wrap { max-width: none; flex-direction: row; justify-content: space-between; gap: 16px; padding: 24px 16px; }
   .tab-count-content { max-width: none; width: auto; }
 
@@ -1108,8 +1126,16 @@ a.footer-link:hover, .h5.footer-mail:hover { color: var(--orange); }
   .discover-card-wrap { display: flex; flex-direction: column; gap: 16px; padding: 8px 0 24px; }
   .arrow-text-wrap { gap: 20px; }
   .comfort-card-icon { width: 24px; height: 21px; }
-  .travel-card-image { display: none; }
-  .image-person-count-wrap { justify-content: flex-start; }
+  .travel-card-image {
+    display: block;
+    position: static;
+    width: 100%;
+    height: 190px;
+    object-fit: contain;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+  .image-person-count-wrap { flex-direction: column; align-items: flex-start; gap: 20px; }
   .count-wrap { flex-direction: row; gap: 24px; }
   .count-content { gap: 8px; }
   .count-content .paragraph-l { font-size: 18px; }

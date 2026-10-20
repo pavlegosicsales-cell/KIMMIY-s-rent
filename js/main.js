@@ -7,6 +7,22 @@
     gsap.registerPlugin(ScrollTrigger);
   }
 
+  /* Always start at the top on reload, so scroll-driven sections
+     (fleet tabs, services deck...) always play from their first state.
+     Chrome restores the old position asynchronously, so win the race
+     by resetting again right after load. */
+  if ("scrollRestoration" in history) history.scrollRestoration = "manual";
+  if (!location.hash) {
+    window.scrollTo(0, 0);
+    window.addEventListener("load", function () {
+      window.scrollTo(0, 0);
+      setTimeout(function () {
+        window.scrollTo(0, 0);
+        if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
+      }, 60);
+    });
+  }
+
   var isDesktop = function () { return window.matchMedia("(min-width: 768px)").matches; };
 
   /* ---------- Clock ---------- */
@@ -161,10 +177,11 @@
         if (h3) gsap.to(h3, { color: "rgb(255,104,41)", filter: "none", duration: 0.6 });
         if (icon) gsap.to(icon, { rotation: 0, duration: 0.6 });
       }
-      wrap.addEventListener("mouseenter", blurAll);
-      wrap.addEventListener("mouseleave", function () { resetAll(); hideImages(); });
+      wrap.addEventListener("mouseenter", function () { if (hoverImages.matches) blurAll(); });
+      wrap.addEventListener("mouseleave", function () { if (!hoverImages.matches) return; resetAll(); hideImages(); });
       cards.forEach(function (card) {
         card.addEventListener("mouseenter", function () {
+          if (!hoverImages.matches) return;
           blurAll();
           resetIcons();
           hideImages();
@@ -226,6 +243,21 @@
             ease: "power3.out",
             delay: i * 0.12,
             scrollTrigger: { trigger: wrap, start: "top 85%", once: true }
+          }));
+      });
+      return function () {
+        tweens.forEach(function (t) { t.scrollTrigger && t.scrollTrigger.kill(); t.kill(); });
+        cards.forEach(function (c) { gsap.set(c, { clearProps: "transform,opacity" }); });
+      };
+    });
+    gsap.matchMedia().add("(max-width: 767px)", function () {
+      var tweens = [];
+      cards.forEach(function (card) {
+        tweens.push(gsap.fromTo(card,
+          { opacity: 0, y: 60 },
+          {
+            opacity: 1, y: 0, duration: 0.8, ease: "power2.out",
+            scrollTrigger: { trigger: card, start: "top 92%", once: true }
           }));
       });
       return function () {
@@ -369,7 +401,7 @@
         if (sectionST) {
           /* jump the page to the scroll position of that tab so further
              scrolling continues forward instead of replaying earlier tabs */
-          var targetProgress = i === 0 ? 0.08 : i === 1 ? 0.5 : 0.92;
+          var targetProgress = i === 0 ? 0.17 : i === 1 ? 0.5 : 0.83;
           var y = sectionST.start + (sectionST.end - sectionST.start) * targetProgress;
           window.scrollTo({ top: y, behavior: "auto" });
           ScrollTrigger.update();
