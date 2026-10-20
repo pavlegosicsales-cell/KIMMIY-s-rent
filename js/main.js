@@ -10,13 +10,20 @@
   /* Always start at the top on reload, so scroll-driven sections
      (fleet tabs, services deck...) always play from their first state.
      Chrome restores the old position asynchronously, so win the race
-     by resetting again right after load. */
+     by resetting again right after load — but never yank the page away
+     from a user who has already started scrolling. */
+  var userMoved = false;
+  ["wheel", "touchstart", "keydown"].forEach(function (ev) {
+    window.addEventListener(ev, function () { userMoved = true; }, { passive: true, once: true });
+  });
   if ("scrollRestoration" in history) history.scrollRestoration = "manual";
   if (!location.hash) {
     window.scrollTo(0, 0);
     window.addEventListener("load", function () {
+      if (userMoved) return;
       window.scrollTo(0, 0);
       setTimeout(function () {
+        if (userMoved) return;
         window.scrollTo(0, 0);
         if (typeof ScrollTrigger !== "undefined") ScrollTrigger.update();
       }, 60);
@@ -515,12 +522,20 @@
   })();
 
   /* Keep ScrollTrigger measurements correct: lazy images shift the layout
-     after load, so refresh once everything settles and after each late image. */
+     after load, so refresh once everything settles and after each late image.
+     Never refresh WHILE the user is scrolling — a mid-scroll refresh causes
+     a visible hitch — wait for the scroll to go idle first. */
+  ScrollTrigger.config({ ignoreMobileResize: true });
   window.addEventListener("load", function () { ScrollTrigger.refresh(); });
+  var lastScrollAt = 0;
+  window.addEventListener("scroll", function () { lastScrollAt = Date.now(); }, { passive: true });
   var refreshT;
   function queueRefresh() {
     clearTimeout(refreshT);
-    refreshT = setTimeout(function () { ScrollTrigger.refresh(); }, 250);
+    refreshT = setTimeout(function () {
+      if (Date.now() - lastScrollAt < 400) { queueRefresh(); return; }
+      ScrollTrigger.refresh();
+    }, 400);
   }
   document.querySelectorAll("img").forEach(function (img) {
     if (!img.complete) img.addEventListener("load", queueRefresh);
