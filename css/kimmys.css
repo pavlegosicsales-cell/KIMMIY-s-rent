@@ -920,6 +920,7 @@ a:hover .text-icon-wrapper .text-icon-content {
 .footer-circle-arrow:hover .dotted-arrow.a1 { transform: translate(130%, -130%); }
 .footer-circle-arrow:hover .dotted-arrow.a2 { transform: translate(0, 0); }
 .h1.footer-link.footer-large-text { text-transform: capitalize; font-size: clamp(48px, 6.9vw, 100px); white-space: nowrap; }
+.footer-text-gap { display: inline-block; width: 185px; }
 .footer-link { color: var(--white); text-decoration: none; transition: color 0.3s; }
 a.footer-link:hover, .h5.footer-mail:hover { color: var(--orange); }
 
@@ -1077,6 +1078,7 @@ img[src*="life-8"] { object-position: 50% 70%; }
 
   .footer-links-wrap { grid-template-columns: 1fr; gap: 48px; }
   .footer-circle-arrow { width: 100px; height: 100px; }
+  .footer-text-gap { width: 120px; }
 }
 
 @media (max-width: 767px) {
@@ -1159,6 +1161,7 @@ img[src*="life-8"] { object-position: 50% 70%; }
   .testimonial-card-one { min-height: 0; }
   .kimmys-footer-name { font-size: 80px; }
   .footer-text-slider-wrap { flex-direction: column; align-items: flex-start; gap: 24px; text-align: left; }
+  .footer-text-gap { display: none; }
   .h1.footer-link.footer-large-text { white-space: normal; font-size: clamp(44px, 11vw, 64px); }
   .footer-circle-arrow { position: static; transform: none; width: 52px; height: 52px; }
   .footer-circle-arrow:hover { transform: scale(1.08); }

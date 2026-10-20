@@ -242,7 +242,7 @@
             duration: 1.1,
             ease: "power3.out",
             delay: i * 0.12,
-            scrollTrigger: { trigger: wrap, start: "top 85%", once: true }
+            scrollTrigger: { trigger: wrap, start: "top 82%", toggleActions: "play none none reverse" }
           }));
       });
       return function () {
