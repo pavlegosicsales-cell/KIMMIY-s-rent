@@ -406,12 +406,17 @@
       link.addEventListener("click", function () {
         var i = parseInt(link.getAttribute("data-tab"), 10);
         if (sectionST) {
-          /* jump the page to the scroll position of that tab so further
-             scrolling continues forward instead of replaying earlier tabs */
+          /* jump the page instantly (bypassing CSS smooth scrolling) to the
+             scroll position of that tab; the section is sticky, so the user
+             sees only the tab change, never the page travelling */
           var targetProgress = i === 0 ? 0.17 : i === 1 ? 0.5 : 0.83;
           var y = sectionST.start + (sectionST.end - sectionST.start) * targetProgress;
-          window.scrollTo({ top: y, behavior: "auto" });
+          var htmlEl = document.documentElement;
+          var prevBehavior = htmlEl.style.scrollBehavior;
+          htmlEl.style.scrollBehavior = "auto";
+          window.scrollTo(0, y);
           ScrollTrigger.update();
+          htmlEl.style.scrollBehavior = prevBehavior;
         } else {
           setActive(i);
         }
