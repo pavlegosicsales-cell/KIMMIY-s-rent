@@ -73,26 +73,135 @@
     });
   })();
 
-  /* ---------- Contact form ----------
-     No backend yet (Step 03 pending): the enquiry is handed to the visitor's
-     mail client addressed to the booking inbox, and the success panel shows. */
-  (function contactForm() {
-    var form = document.getElementById("contact-form");
+  /* ---------- Contact: booking wizard ----------
+     Skill 02, step 8: choice cards on steps 1-4 (a tap picks and advances),
+     text fields last, progress ticks, Back on every step after the first,
+     submit disabled while sending, inline confirmation.
+
+     ENDPOINT is the Apps Script /exec URL from skill 03.
+     Paste the Apps Script URL here after running Skill 03. While it is empty
+     the request is handed to the visitor's mail client instead, so nothing
+     is lost before the backend exists. */
+  var ENDPOINT = '';
+  var BOOKING_MAIL = 'bookings@kimmiysrent.com';
+  var BOOKING_TEL = '+381 65 2017 777';
+
+  (function bookingWizard() {
+    var form = document.getElementById("wizard");
     if (!form) return;
     var box = form.closest(".contact-us-form");
-    form.addEventListener("submit", function (e) {
-      e.preventDefault();
-      if (!form.checkValidity()) { form.reportValidity(); return; }
-      var v = function (n) { return (form.elements[n].value || "").trim(); };
-      var subject = "Car enquiry from " + v("first_name") + " " + v("last_name");
-      var body = "Name: " + v("first_name") + " " + v("last_name") + "\nPhone: " + v("phone") + "\nEmail: " + v("email") + "\n\n" + v("message");
-      try {
-        window.location.href = "mailto:bookings@kimmiysrent.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
-        box.classList.add("is-sent");
-      } catch (err) {
-        box.classList.add("is-error");
+    var steps = Array.prototype.slice.call(form.querySelectorAll(".wstep"));
+    var ticks = Array.prototype.slice.call(form.querySelectorAll(".wizard__tick"));
+    var count = form.querySelector(".wizard__count");
+    var back = form.querySelector(".wnav__back");
+    var next = form.querySelector(".wnav__next");
+    var submit = form.querySelector(".wnav__submit");
+    var err = form.querySelector(".wizard__err");
+    var done = box.querySelector(".wizard__done");
+    var i = 0;
+
+    function render() {
+      steps.forEach(function (s, n) { s.classList.toggle("is-active", n === i); });
+      ticks.forEach(function (t, n) { t.classList.toggle("is-done", n <= i); });
+      if (count) count.textContent = "Step " + (i + 1) + " of " + steps.length;
+      back.hidden = i === 0;
+      var last = i === steps.length - 1;
+      next.hidden = last;
+      submit.hidden = !last;
+      err.hidden = true;
+      var q = steps[i].querySelector(".wstep__q");
+      if (q) { q.setAttribute("tabindex", "-1"); q.focus({ preventScroll: true }); }
+    }
+    function go(n) { i = Math.max(0, Math.min(steps.length - 1, n)); render(); }
+
+    /* a step with a choice group needs a pick; a step with inputs needs its
+       required ones filled and valid */
+    function stepOk(n) {
+      var step = steps[n];
+      var group = step.querySelector(".wopts");
+      if (group && !group.dataset.value) return "Please pick one option to continue.";
+      var fields = step.querySelectorAll("input, textarea");
+      for (var k = 0; k < fields.length; k++) {
+        if (!fields[k].checkValidity()) {
+          fields[k].focus();
+          return fields[k].validationMessage || "Please fill in the highlighted field.";
+        }
+      }
+      return "";
+    }
+
+    form.addEventListener("click", function (e) {
+      var opt = e.target.closest(".wopt");
+      if (opt) {
+        var group = opt.closest(".wopts");
+        Array.prototype.forEach.call(group.querySelectorAll(".wopt"), function (b) {
+          b.classList.remove("is-picked"); b.setAttribute("aria-pressed", "false");
+        });
+        opt.classList.add("is-picked");
+        opt.setAttribute("aria-pressed", "true");
+        group.dataset.value = opt.dataset.value;
+        if (i < steps.length - 1) window.setTimeout(function () { go(i + 1); }, 160);
+        return;
+      }
+      if (e.target.closest(".wnav__back")) { go(i - 1); return; }
+      if (e.target.closest(".wnav__next")) {
+        var problem = stepOk(i);
+        if (problem) { err.textContent = problem; err.hidden = false; return; }
+        go(i + 1);
       }
     });
+
+    /* Enter inside a field behaves like Continue, except on the last step */
+    form.addEventListener("keydown", function (e) {
+      if (e.key === "Enter" && e.target.tagName === "INPUT" && i < steps.length - 1) {
+        e.preventDefault(); next.click();
+      }
+    });
+
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      err.hidden = true;
+      var problem = stepOk(i);
+      if (problem) { err.textContent = problem; err.hidden = false; return; }
+      var data = {};
+      Array.prototype.forEach.call(form.querySelectorAll(".wopts"), function (g) { data[g.dataset.name] = g.dataset.value || ""; });
+      Array.prototype.forEach.call(form.querySelectorAll("input, textarea"), function (f) { if (f.name) data[f.name] = f.value.trim(); });
+      data.page = window.location.pathname;
+
+      submit.disabled = true;
+      var label = submit.querySelector(".btn__label");
+      var old = label ? label.textContent : "";
+      if (label) label.textContent = "Sending...";
+
+      function ok() { box.classList.add("is-sent"); if (done) done.classList.add("is-shown"); }
+      function fail() {
+        submit.disabled = false;
+        if (label) label.textContent = old;
+        err.textContent = "Sending failed. Call " + BOOKING_TEL + " or write to " + BOOKING_MAIL + ".";
+        err.hidden = false;
+      }
+
+      if (!ENDPOINT) {
+        /* no backend yet: open the mail client with the whole request */
+        window.console.warn("Kimmiy's Rent: ENDPOINT is empty, request handed to the mail client.", data);
+        var lines = [
+          "Car: " + data.car, "Pick-up: " + data.pickup_date + " " + data.pickup_time,
+          "Duration: " + data.duration, "Meeting point: " + data.pickup_location, "",
+          "Name: " + data.first_name + " " + data.last_name, "Phone: " + data.phone, "Email: " + data.email,
+          "Flight: " + data.flight, "", data.message
+        ];
+        window.location.href = "mailto:" + BOOKING_MAIL + "?subject=" + encodeURIComponent("Booking request: " + data.car) + "&body=" + encodeURIComponent(lines.join("\n"));
+        ok();
+        return;
+      }
+
+      /* GET with URL params and no-cors: Apps Script redirects every POST
+         and sends no CORS headers (same approach as the other sites) */
+      var qs = Object.keys(data).map(function (k) { return encodeURIComponent(k) + "=" + encodeURIComponent(data[k]); }).join("&");
+      window.fetch(ENDPOINT + "?" + qs, { method: "GET", mode: "no-cors" }).then(ok).catch(fail);
+    });
+
+    render();
   })();
 
   /* ---------- Clock ---------- */

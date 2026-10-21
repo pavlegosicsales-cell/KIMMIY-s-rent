@@ -11,7 +11,7 @@
 <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin="anonymous"/>
 <link rel="preload" as="font" type="font/otf" href="fonts/CreatoDisplay-Medium.otf" crossorigin="anonymous"/>
 <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
-<link href="css/kimmys.css?v=17" rel="stylesheet" type="text/css"/>
+<link href="css/kimmys.css?v=18" rel="stylesheet" type="text/css"/>
 </head>
 <body class="contact-page">
 <div class="page-wrapper">
@@ -96,33 +96,113 @@
         </div>
         <div class="contact-form-wrap" data-reveal>
           <div class="contact-us-form w-form">
-            <form id="contact-form" name="contact-form" method="post" class="contact-us-form-content" novalidate>
-              <div class="name-field-wrap">
-                <div class="contact-input-tag-wrap">
-                  <label for="first-name" class="paragraph">First Name</label>
-                  <input class="contact-input-field w-input" maxlength="256" name="first_name" placeholder="First Name" type="text" id="first-name" required autocomplete="given-name"/>
+            <form id="wizard" name="booking-wizard" class="wizard" novalidate>
+              <div class="wizard__bar" aria-hidden="true">
+                <span class="wizard__tick"></span><span class="wizard__tick"></span><span class="wizard__tick"></span><span class="wizard__tick"></span><span class="wizard__tick"></span>
+              </div>
+              <p class="paragraph-xs wizard__count">Step 1 of 5</p>
+
+              <!-- 1: car -->
+              <div class="wstep is-active">
+                <h2 class="h6 wstep__q">Which car would you like?</h2>
+                <div class="wopts wopts--cars" data-name="car">
+                  <button type="button" class="wopt" data-value="Audi A7" aria-pressed="false"><img src="images/cars/audi-a7.png" loading="lazy" alt="" class="wopt__img"/><span class="wopt__text"><span class="paragraph wopt__title">Audi A7</span><span class="paragraph-xs wopt__sub">Sportback &middot; EUR 120/day</span></span></button>
+                  <button type="button" class="wopt" data-value="Mercedes-Benz S-Class" aria-pressed="false"><img src="images/cars/mercedes-s-class.webp" loading="lazy" alt="" class="wopt__img"/><span class="wopt__text"><span class="paragraph wopt__title">Mercedes-Benz S-Class</span><span class="paragraph-xs wopt__sub">Flagship sedan &middot; EUR 180/day</span></span></button>
+                  <button type="button" class="wopt" data-value="BMW 7 Series" aria-pressed="false"><img src="images/cars/bmw-7-series.webp" loading="lazy" alt="" class="wopt__img"/><span class="wopt__text"><span class="paragraph wopt__title">BMW 7 Series</span><span class="paragraph-xs wopt__sub">Executive sedan &middot; EUR 150/day</span></span></button>
+                  <button type="button" class="wopt" data-value="Not sure yet" aria-pressed="false"><span class="wopt__text"><span class="paragraph wopt__title">Not sure yet</span><span class="paragraph-xs wopt__sub">Recommend one for my trip</span></span></button>
                 </div>
-                <div class="contact-input-tag-wrap">
-                  <label for="last-name" class="paragraph">Last Name</label>
-                  <input class="contact-input-field w-input" maxlength="256" name="last_name" placeholder="Last Name" type="text" id="last-name" autocomplete="family-name"/>
+              </div>
+
+              <!-- 2: pick-up -->
+              <div class="wstep">
+                <h2 class="h6 wstep__q">When do you need the car?</h2>
+                <div class="name-field-wrap">
+                  <div class="contact-input-tag-wrap wfield">
+                    <label for="pickup-date" class="paragraph">Pick-up date</label>
+                    <input class="contact-input-field w-input" type="date" id="pickup-date" name="pickup_date" required/>
+                  </div>
+                  <div class="contact-input-tag-wrap wfield">
+                    <label for="pickup-time" class="paragraph">Pick-up time</label>
+                    <input class="contact-input-field w-input" type="time" id="pickup-time" name="pickup_time"/>
+                  </div>
+                </div>
+                <p class="paragraph-xs wizard__note">Landing late or early? We hand over at any hour, same price.</p>
+              </div>
+
+              <!-- 3: duration -->
+              <div class="wstep">
+                <h2 class="h6 wstep__q">For how long?</h2>
+                <div class="wopts" data-name="duration">
+                  <button type="button" class="wopt" data-value="1-3 days" aria-pressed="false"><span class="wopt__text"><span class="paragraph wopt__title">1 to 3 days</span></span></button>
+                  <button type="button" class="wopt" data-value="4-7 days" aria-pressed="false"><span class="wopt__text"><span class="paragraph wopt__title">4 to 7 days</span></span></button>
+                  <button type="button" class="wopt" data-value="1-2 weeks" aria-pressed="false"><span class="wopt__text"><span class="paragraph wopt__title">1 to 2 weeks</span></span></button>
+                  <button type="button" class="wopt" data-value="A month or longer" aria-pressed="false"><span class="wopt__text"><span class="paragraph wopt__title">A month or longer</span><span class="paragraph-xs wopt__sub">Ask us for a long-term rate</span></span></button>
                 </div>
               </div>
-              <div class="contact-input-tag-wrap">
-                <label for="phone" class="paragraph">Phone Number</label>
-                <input class="contact-input-field w-input" maxlength="256" name="phone" placeholder="+381 6x xxx xxxx" type="tel" id="phone" required autocomplete="tel"/>
+
+              <!-- 4: pick-up place -->
+              <div class="wstep">
+                <h2 class="h6 wstep__q">Where should we meet you?</h2>
+                <div class="wopts" data-name="pickup_location">
+                  <button type="button" class="wopt" data-value="Belgrade Airport arrivals" aria-pressed="false"><span class="wopt__text"><span class="paragraph wopt__title">Belgrade Airport</span><span class="paragraph-xs wopt__sub">We wait at arrivals with your name</span></span></button>
+                  <button type="button" class="wopt" data-value="Kimmiy Hotel, Surcin" aria-pressed="false"><span class="wopt__text"><span class="paragraph wopt__title">Kimmiy Hotel, Sur&#x10D;in</span><span class="paragraph-xs wopt__sub">Our base, five minutes from the airport</span></span></button>
+                  <button type="button" class="wopt" data-value="Hotel or address in Belgrade" aria-pressed="false"><span class="wopt__text"><span class="paragraph wopt__title">Hotel or address in Belgrade</span><span class="paragraph-xs wopt__sub">Delivered to your door</span></span></button>
+                  <button type="button" class="wopt" data-value="Somewhere else" aria-pressed="false"><span class="wopt__text"><span class="paragraph wopt__title">Somewhere else</span><span class="paragraph-xs wopt__sub">Tell us in the message</span></span></button>
+                </div>
               </div>
-              <div class="contact-input-tag-wrap">
-                <label for="email" class="paragraph">Email</label>
-                <input class="contact-input-field w-input" maxlength="256" name="email" placeholder="you@example.com" type="email" id="email" required autocomplete="email"/>
+
+              <!-- 5: details -->
+              <div class="wstep">
+                <h2 class="h6 wstep__q">Your details</h2>
+                <div class="name-field-wrap">
+                  <div class="contact-input-tag-wrap wfield">
+                    <label for="first-name" class="paragraph">First Name</label>
+                    <input class="contact-input-field w-input" maxlength="256" name="first_name" placeholder="First Name" type="text" id="first-name" required autocomplete="given-name"/>
+                  </div>
+                  <div class="contact-input-tag-wrap wfield">
+                    <label for="last-name" class="paragraph">Last Name</label>
+                    <input class="contact-input-field w-input" maxlength="256" name="last_name" placeholder="Last Name" type="text" id="last-name" autocomplete="family-name"/>
+                  </div>
+                </div>
+                <div class="name-field-wrap">
+                  <div class="contact-input-tag-wrap wfield">
+                    <label for="phone" class="paragraph">Phone Number</label>
+                    <input class="contact-input-field w-input" maxlength="256" name="phone" placeholder="+381 6x xxx xxxx" type="tel" id="phone" required autocomplete="tel"/>
+                  </div>
+                  <div class="contact-input-tag-wrap wfield">
+                    <label for="email" class="paragraph">Email</label>
+                    <input class="contact-input-field w-input" maxlength="256" name="email" placeholder="you@example.com" type="email" id="email" required autocomplete="email"/>
+                  </div>
+                </div>
+                <div class="contact-input-tag-wrap wfield">
+                  <label for="flight" class="paragraph">Flight number <span class="wfield__opt">(optional)</span></label>
+                  <input class="contact-input-field w-input" maxlength="32" name="flight" placeholder="e.g. JU 351" type="text" id="flight"/>
+                </div>
+                <div class="contact-input-tag-wrap wfield">
+                  <label for="message" class="paragraph">Message <span class="wfield__opt">(optional)</span></label>
+                  <textarea id="message" name="message" maxlength="5000" placeholder="Anything else we should know ..." class="contact-input-field contact-text-area w-input"></textarea>
+                </div>
               </div>
-              <div class="contact-input-tag-wrap">
-                <label for="message" class="paragraph">Message</label>
-                <textarea id="message" name="message" maxlength="5000" placeholder="Which car, your dates and your flight number ..." required class="contact-input-field contact-text-area w-input"></textarea>
+
+              <p class="paragraph-xs wizard__err" role="alert" hidden></p>
+              <div class="wnav">
+                <button type="button" class="button-white service-details-button wnav__back" hidden>
+                  <div class="white-button-content-wrap">
+                    <div class="white-button-content">
+                      <img src="images/icons/back-arrow.svg" loading="lazy" alt="" class="arrow-icon-white special-card-arrow one"/>
+                      <p class="paragraph-xs blog-button-text">Back</p>
+                      <img src="images/icons/back-arrow.svg" loading="lazy" alt="" class="arrow-icon-white special-card-arrow two"/>
+                    </div>
+                  </div>
+                </button>
+                <button type="button" class="button-primary contact-submit-button wnav__next">Continue</button>
+                <button type="submit" class="button-primary contact-submit-button wnav__submit" hidden><span class="btn__label">Send Request</span></button>
               </div>
-              <input type="submit" data-wait="Please wait..." class="button-primary contact-submit-button w-button" value="Submit"/>
             </form>
-            <div class="form-success-message w-form-done"><div>Thank you! We will confirm your car within the hour, day or night.</div></div>
-            <div class="form-error-message w-form-fail"><div>Something went wrong. Please call us on +381 65 2017 777.</div></div>
+            <div class="wizard__done" role="status">
+              <h2 class="h5">Thank you, your request is in.</h2>
+              <p class="paragraph-xs">We confirm the car, price and meeting point within the hour, day or night. If it is urgent, call <a href="tel:+381652017777">+381 65 2017 777</a>.</p>
+            </div>
           </div>
         </div>
       </div>
@@ -237,6 +317,6 @@
 </div>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/gsap.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.13.0/ScrollTrigger.min.js"></script>
-<script src="js/main.js?v=17"></script>
+<script src="js/main.js?v=18"></script>
 </body>
 </html>
