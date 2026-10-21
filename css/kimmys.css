@@ -1688,3 +1688,114 @@ img[src*="life-8"] { object-position: 50% 70%; }
   .cars-page-section .car-card-image { height: 260px; }
   .category-link { padding: 12px 18px; }
 }
+
+/* ==========================================================================
+   Contact page
+   ========================================================================== */
+.contact-us-section { padding-top: 0; }
+.contact-us-layout { display: flex; flex-direction: column; gap: 64px; }
+.contact-text-form-wrap { display: flex; flex-direction: column; gap: 64px; }
+.h1.contact-us-heading { width: 100%; max-width: 680px; }
+.contact-info-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 16px;
+  width: 100%;
+  padding: 48px;
+  border: 1px solid #efefef;
+  border-radius: var(--radius);
+  background-color: var(--smoke);
+}
+.contact-icon-info-wrap { display: flex; flex-direction: column; gap: 32px; }
+.email-icon { display: flex; justify-content: center; align-items: center; width: 48px; height: 48px; color: var(--gray-4); transition: color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.email-icon svg { width: 100%; height: 100%; display: block; }
+.contact-icon-info-wrap:hover .email-icon { color: var(--orange); }
+.info-content-wrap { display: flex; flex-direction: column; gap: 12px; }
+.paragraph.contact-info-color { text-decoration: none; transition: color 0.2s; }
+.paragraph.contact-info-color:hover { color: var(--orange); }
+
+.contact-form-wrap {
+  padding-top: 56px;
+  padding-bottom: 56px;
+  border-radius: var(--radius);
+  background-image: url("../images/contact-bg.webp");
+  background-position: 0 0;
+  background-size: cover;
+}
+.contact-us-form {
+  width: 100%;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 94px 0;
+  border-radius: var(--radius);
+  background-color: var(--white);
+}
+.contact-us-form-content {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  width: 100%;
+  max-width: 740px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+.name-field-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; width: 100%; }
+.contact-input-tag-wrap { display: flex; flex-direction: column; gap: 16px; width: 100%; }
+.contact-input-field {
+  width: 100%;
+  height: auto;
+  margin: 0;
+  padding: 16px 32px;
+  border: 1px solid #efefef;
+  border-radius: 80px;
+  background-color: #f5f5f5;
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--black);
+  outline: none;
+  transition: border-color 0.2s;
+}
+.contact-input-field:focus { border-color: var(--orange); }
+.contact-input-field::placeholder { color: #40404075; }
+.contact-input-field.contact-text-area { border-radius: 32px; height: 200px; resize: vertical; }
+.button-primary.contact-submit-button {
+  border: 0;
+  color: var(--white);
+  font-family: var(--font-body);
+  font-size: 16px;
+  line-height: 1;
+  padding: 16px 24px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+.button-primary.contact-submit-button:hover { background-color: var(--orange); }
+.contact-us-form .form-success-message { display: none; margin: 24px; padding: 24px; border-radius: 20px; background-color: var(--orange); color: var(--white); text-align: center; }
+.contact-us-form .form-error-message { display: none; margin: 24px; padding: 24px; border-radius: 20px; background-color: #ffdede; text-align: center; }
+.contact-us-form.is-sent .contact-us-form-content { display: none; }
+.contact-us-form.is-sent .form-success-message { display: block; }
+.contact-us-form.is-error .form-error-message { display: block; }
+.google-map { width: 100%; height: 600px; margin: 0; }
+.google-map iframe { display: block; width: 100%; height: 100%; }
+
+@media (max-width: 991px) {
+  .email-icon { width: 36px; height: 36px; }
+  .contact-form-wrap { background-image: none; padding-top: 0; padding-bottom: 0; }
+  .contact-us-form { padding-top: 0; padding-bottom: 0; }
+  .contact-us-form-content { padding: 0; }
+  .contact-input-field.contact-text-area { border-radius: 16px; }
+  .contact-info-wrap { padding: 32px; }
+  .google-map { height: 420px; }
+}
+@media (max-width: 767px) {
+  .contact-info-wrap { grid-template-columns: 1fr 1fr; gap: 32px 16px; }
+  .contact-input-field.contact-text-area { height: 120px; }
+  .contact-us-layout, .contact-text-form-wrap { gap: 48px; }
+}
+@media (max-width: 479px) {
+  .contact-info-wrap { grid-template-columns: 1fr; padding: 24px; }
+  .contact-input-field { border-radius: 16px; padding: 14px 20px; }
+  .name-field-wrap { grid-template-columns: 1fr; }
+  .google-map { height: 320px; }
+}

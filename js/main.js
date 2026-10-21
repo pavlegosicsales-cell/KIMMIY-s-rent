@@ -73,6 +73,28 @@
     });
   })();
 
+  /* ---------- Contact form ----------
+     No backend yet (Step 03 pending): the enquiry is handed to the visitor's
+     mail client addressed to the booking inbox, and the success panel shows. */
+  (function contactForm() {
+    var form = document.getElementById("contact-form");
+    if (!form) return;
+    var box = form.closest(".contact-us-form");
+    form.addEventListener("submit", function (e) {
+      e.preventDefault();
+      if (!form.checkValidity()) { form.reportValidity(); return; }
+      var v = function (n) { return (form.elements[n].value || "").trim(); };
+      var subject = "Car enquiry from " + v("first_name") + " " + v("last_name");
+      var body = "Name: " + v("first_name") + " " + v("last_name") + "\nPhone: " + v("phone") + "\nEmail: " + v("email") + "\n\n" + v("message");
+      try {
+        window.location.href = "mailto:bookings@kimmiysrent.com?subject=" + encodeURIComponent(subject) + "&body=" + encodeURIComponent(body);
+        box.classList.add("is-sent");
+      } catch (err) {
+        box.classList.add("is-error");
+      }
+    });
+  })();
+
   /* ---------- Clock ---------- */
   (function clock() {
     var hh = document.querySelector(".hh"),
