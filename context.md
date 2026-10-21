@@ -39,7 +39,7 @@
 High-end clientele: business travellers, executives and VIP guests flying into Belgrade, diaspora visiting home, people who want a premium car for events, weddings and special occasions. Many arrive via the airport, so a large share will be foreign / English-speaking.
 
 ## Build Decisions (confirmed by user, 2026-10-19)
-- Scope: homepage only (index.html), English language
+- Scope: homepage (index.html), About page (about.html), three car model pages (audi-a7.html, mercedes-s-class.html, bmw-7-series.html), privacy.html. English language
 - Design: 1:1 clone of MetroRide Webflow template (metroride.webflow.io) — its CSS, icons, arrows, fonts, scroll/hover/blur effects are reused directly; our copy, structure and images
 - Prices shown on site (placeholders): Audi A7 EUR 120/day, BMW 7 Series EUR 150/day, Mercedes S-Class EUR 180/day
 - Terms shown (industry-standard placeholders): 23+ age, 2+ years licence, EUR 500 deposit, 300 km/day included, full insurance, 24/7 airport delivery
@@ -53,3 +53,13 @@ High-end clientele: business travellers, executives and VIP guests flying into B
 - Language: TBC — recommended bilingual Serbian + English given airport and international clientele.
 - Pricing on site: TBC — confirm whether to show prices or "price on request".
 - Booking flow: enquiry form (Skill 03) — capture car, pick-up/return dates, pick-up location, name, phone, email.
+
+## Pages added 2026-10-22
+- about.html: clone of metroride.webflow.io/about. "Meet our team" replaced by "The fleet" (no team photos), blog section dropped, CTA + footer reused. Five-step process (added "Return With Ease" so the pyramid layout matches the template).
+- Car model pages: clone of metroride.webflow.io/cars/<slug>. Weekly price = 6 x daily, monthly = 20 x daily (PLACEHOLDERS, confirm with owner). Equipment lists are typical 2017 spec, NOT verified against the actual cars; seats 5 / baggage 3 assumed.
+- Fleet tabs on the homepage link to the model pages ("View Details" button + car name); About fleet cards link too.
+- cars.html: clone of metroride.webflow.io/car-categories/all. Heading, brand filter pills (All / Audi / Mercedes-Benz / BMW, client-side), 2-column cards. Nav item "Cars" on every page replaces the old "Fleet" anchor; footer has both Cars and Fleet.
+
+## Technical rules
+- Never use CSS `scroll-behavior: smooth` on this site: it breaks ScrollTrigger.refresh() while scrolled (fleet opened on the wrong car, thumbnail jumps landed off-section). Smooth anchor scrolling is done in js/main.js.
+- MetroRide Webflow interactions (IX2 JSON) can be extracted from their webflow.schunk.*.js bundle; see the teardown notes in the build chat (events keyed by data-w-id, page-prefixed ids).

@@ -32,6 +32,47 @@
 
   var isDesktop = function () { return window.matchMedia("(min-width: 768px)").matches; };
 
+  /* ---------- Smooth anchor scrolling ----------
+     Done here rather than with CSS `scroll-behavior: smooth`, because that
+     property stops ScrollTrigger.refresh() from jumping the page to measure,
+     so every trigger below the fold got the wrong start once you had scrolled
+     (the fleet opened on the wrong car, thumbnail clicks landed off-section). */
+  document.addEventListener("click", function (e) {
+    var a = e.target.closest ? e.target.closest('a[href*="#"]') : null;
+    if (!a) return;
+    var href = a.getAttribute("href");
+    var hashIdx = href.indexOf("#");
+    var path = href.slice(0, hashIdx);
+    if (path && path !== location.pathname.split("/").pop()) return; /* other page */
+    var id = href.slice(hashIdx + 1);
+    var target = id ? document.getElementById(id) : document.body;
+    if (!target) return;
+    e.preventDefault();
+    var margin = parseFloat(getComputedStyle(target).scrollMarginTop) || 0;
+    var y = id ? target.getBoundingClientRect().top + window.pageYOffset - margin : 0;
+    window.scrollTo({ top: y, behavior: "smooth" });
+    if (history.replaceState) history.replaceState(null, "", id ? "#" + id : location.pathname);
+  });
+
+  /* ---------- Cars page: brand filter pills ---------- */
+  (function carsFilter() {
+    var pills = document.querySelectorAll(".category-link[data-filter]");
+    if (!pills.length) return;
+    var items = document.querySelectorAll(".project_items[data-brand]");
+    pills.forEach(function (pill) {
+      pill.addEventListener("click", function (e) {
+        e.preventDefault();
+        e.stopPropagation();
+        var f = pill.getAttribute("data-filter");
+        pills.forEach(function (p) { p.classList.toggle("w--current", p === pill); });
+        items.forEach(function (it) {
+          it.classList.toggle("is-hidden", f !== "All" && it.getAttribute("data-brand") !== f);
+        });
+        if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh();
+      }, true);
+    });
+  })();
+
   /* ---------- Clock ---------- */
   (function clock() {
     var hh = document.querySelector(".hh"),
@@ -207,11 +248,15 @@
   gsap.utils.toArray("[data-reveal]").forEach(function (el) {
     if (el.closest(".why-choose-us-cards-wrap")) return;
     if (el.closest(".testimonial-cards-wrap")) return;
+    var isHeading = el.classList.contains("section-heading") || el.classList.contains("our-process-heading");
+    var delay = el.hasAttribute("data-reveal-delay") ? parseFloat(el.getAttribute("data-reveal-delay")) || 0 : (isHeading ? 0.2 : 0);
+    var startAt = el.getAttribute("data-reveal-start") || "70%";
     gsap.fromTo(el,
-      { opacity: 0, y: 30 },
+      { opacity: 0, y: 100 },
       {
-        opacity: 1, y: 0, duration: 0.9, ease: "power2.out",
-        scrollTrigger: { trigger: el, start: "top 88%", once: true }
+        opacity: 1, y: 0, duration: 1, ease: "power4.out",
+        delay: delay,
+        scrollTrigger: { trigger: el, start: "top " + startAt, once: true }
       });
   });
 
@@ -335,6 +380,108 @@
   marquee(document.querySelector(".about-us-text-slider-wrap"), 28);
   marquee(document.querySelector(".kimmys-footer-marquee"), 24);
 
+  /* ================= About page ================= */
+
+  /* ---------- Banner marquee (orange band) ---------- */
+  marquee(document.querySelector(".about-marquee-track"), 30);
+
+  /* ---------- Who we are: white overlay slides off each image once it is
+     half way into view (source: height 100% -> 0, 500ms, 300ms delay) ---------- */
+  (function whoWeAre() {
+    var wraps = document.querySelectorAll(".who-we-are-image-wrap .appear-image-wrapper");
+    if (!wraps.length) return;
+    gsap.matchMedia().add("(min-width: 992px)", function () {
+      var tweens = [];
+      wraps.forEach(function (wrap) {
+        var overlay = wrap.querySelector(".appear-image-overlay");
+        if (!overlay) return;
+        tweens.push(gsap.fromTo(overlay,
+          { scaleY: 1 },
+          {
+            scaleY: 0, ease: "power1.inOut", duration: 0.5, delay: 0.3,
+            scrollTrigger: { trigger: wrap, start: "top 50%", once: true }
+          }));
+      });
+      return function () {
+        tweens.forEach(function (t) { t.scrollTrigger && t.scrollTrigger.kill(); t.kill(); });
+        wraps.forEach(function (w) { gsap.set(w.querySelectorAll(".appear-image-overlay"), { clearProps: "all" }); });
+      };
+    });
+  })();
+
+  /* ---------- Why choose us deck: the four cards start gathered in the middle
+     of the row (shifted up a quarter) and spread to their slots between 25% and
+     85% of the section's scroll (source template keyframes, smoothing 85) ---------- */
+  (function travelDrive() {
+    var section = document.querySelector(".travel-drive-choose-us-section");
+    if (!section) return;
+    var cards = [
+      section.querySelector(".travel-card-one"),
+      section.querySelector(".travel-card-two"),
+      section.querySelector(".travel-card-three"),
+      section.querySelector(".travel-card-four")
+    ].filter(Boolean);
+    if (cards.length < 4) return;
+    var startX = [75, 25, -25, -75];
+    var heading = section.querySelector(".travel-drive-heading-wrap");
+    var cardsWrap = section.querySelector(".drive-travel-cards-wrap");
+    gsap.matchMedia().add("(min-width: 992px)", function () {
+      /* the template lifts the gathered cards by a quarter of their height,
+         which runs them over the heading; cap the lift at the free space
+         between heading and cards so the title always stays readable */
+      var lift = cards[0].offsetHeight * 0.25;
+      if (heading && cardsWrap) {
+        var room = cardsWrap.getBoundingClientRect().top - heading.getBoundingClientRect().bottom - 8;
+        lift = Math.max(0, Math.min(lift, room));
+      }
+      var tl = gsap.timeline({
+        scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: 0.6 }
+      });
+      cards.forEach(function (card, i) {
+        tl.fromTo(card,
+          { xPercent: startX[i], y: -lift },
+          { xPercent: 0, y: 0, ease: "none", duration: 0.6 },
+          0.25);
+      });
+      /* keyframes at 25% and 85% of a 0-1 timeline: hold before, hold after */
+      tl.to({}, { duration: 0.15 });
+      return function () {
+        tl.scrollTrigger && tl.scrollTrigger.kill();
+        tl.kill();
+        gsap.set(cards, { clearProps: "transform" });
+      };
+    });
+  })();
+
+  /* ---------- Our process: row two starts 25% towards the middle, row three
+     50%, and they slide out to their slots between 40-53% and 58-73% of the
+     section's scroll (source template keyframes, smoothing 86) ---------- */
+  (function processCards() {
+    var section = document.querySelector(".our-process-section");
+    if (!section) return;
+    var pairs = [
+      { els: [section.querySelector(".process-card-two"), section.querySelector(".process-card-three")], from: [25, -25], at: 0.40, to: 0.53 },
+      { els: [section.querySelector(".process-card-four"), section.querySelector(".process-card-five")], from: [50, -50], at: 0.58, to: 0.73 }
+    ];
+    if (pairs.some(function (p) { return p.els.some(function (e) { return !e; }); })) return;
+    gsap.matchMedia().add("(min-width: 992px)", function () {
+      var tl = gsap.timeline({
+        scrollTrigger: { trigger: section, start: "top bottom", end: "bottom top", scrub: 0.7 }
+      });
+      pairs.forEach(function (p) {
+        p.els.forEach(function (el, i) {
+          tl.fromTo(el, { xPercent: p.from[i] }, { xPercent: 0, ease: "none", duration: p.to - p.at }, p.at);
+        });
+      });
+      tl.to({}, { duration: 1 - pairs[pairs.length - 1].to });
+      return function () {
+        tl.scrollTrigger && tl.scrollTrigger.kill();
+        tl.kill();
+        pairs.forEach(function (p) { gsap.set(p.els, { clearProps: "transform" }); });
+      };
+    });
+  })();
+
   /* ---------- Drive circle reveal ---------- */
   (function drive() {
     var section = document.querySelector(".drive-section");
@@ -411,12 +558,8 @@
              sees only the tab change, never the page travelling */
           var targetProgress = i === 0 ? 0.17 : i === 1 ? 0.5 : 0.83;
           var y = sectionST.start + (sectionST.end - sectionST.start) * targetProgress;
-          var htmlEl = document.documentElement;
-          var prevBehavior = htmlEl.style.scrollBehavior;
-          htmlEl.style.scrollBehavior = "auto";
           window.scrollTo(0, y);
           ScrollTrigger.update();
-          htmlEl.style.scrollBehavior = prevBehavior;
         } else {
           setActive(i);
         }

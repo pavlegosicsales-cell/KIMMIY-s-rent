@@ -45,7 +45,6 @@
 
 /* ---------- Base ---------- */
 *, *::before, *::after { box-sizing: border-box; }
-html { scroll-behavior: smooth; }
 body {
   margin: 0;
   background-color: var(--white);
@@ -1180,4 +1179,512 @@ img[src*="life-8"] { object-position: 50% 70%; }
   .down-arrow-icon-text-wrap { padding-bottom: 20px; }
   .faq-dropdown-wrap { gap: 32px; }
   .about-us-scroll-text { font-size: 72px; }
+}
+
+/* ==========================================================================
+   About page
+   ========================================================================== */
+
+/* ---------- Dark navbar (white page background) ---------- */
+.kimmys-logo-text.kimmys-logo-text-dark { color: var(--black); }
+.navbar-time-pill-wrap.white-navbar { background-color: transparent; border: 1px solid #0006; color: var(--black); }
+.time-dot.black-dot { background-color: var(--black); }
+.paragraph-xs.navbar-link-black { color: var(--black); text-decoration: none; transition: color 0.2s; }
+.paragraph-xs.navbar-link-black:hover,
+.paragraph-xs.navbar-link-black.w--current { color: var(--orange); }
+.kimmys-menu-button-dark .kimmys-burger span { background: var(--black); }
+
+/* ---------- Banner ---------- */
+.about-us-banner-section {
+  display: flex;
+  flex-direction: column;
+  gap: 64px;
+  padding-top: 0;
+  padding-bottom: var(--section-pad);
+}
+.about-us-banner-section.no-padding-bottom { padding-bottom: 0; }
+.about-banner-layout { display: flex; flex-direction: column; gap: 64px; }
+.about-social-count-wrap {
+  display: grid;
+  grid-template-columns: 10fr 2fr;
+  gap: 16px;
+  margin-top: 48px;
+}
+.about-count-wrap {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 80px;
+  align-items: flex-start;
+}
+.stock-count-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #0000004d;
+}
+.count-plus-icon-wrap { display: flex; align-items: baseline; }
+.text-orange, .h4.text-orange { color: var(--orange); }
+.social-links-wrap { display: flex; flex-direction: column; gap: 24px; }
+.social-link-wrap { display: flex; justify-content: flex-end; align-items: center; height: 26px; }
+.paragraph.about-banner-social-link {
+  line-height: 1;
+  text-align: right;
+  border-bottom: 2px solid #000;
+  text-decoration: none;
+  transition: color 0.2s, border-color 0.2s;
+}
+.paragraph.about-banner-social-link:hover { color: var(--orange); border-bottom-color: var(--orange); }
+
+.heading-scroll-button-wrap { display: flex; justify-content: flex-start; align-items: flex-end; gap: 48px; }
+.h1.page-heading { max-width: 1000px; }
+.scroll-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  width: 130px;
+  height: 130px;
+  border: 1px solid #0000004d;
+  border-radius: 100%;
+  text-decoration: none;
+  color: var(--black);
+  transition: border-color 0.3s;
+}
+.scroll-button:hover { border-color: var(--orange); }
+.scroll-arrow-wrapper { width: 26px; height: 26px; overflow: hidden; }
+.arrow-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  animation: scroll-arrow-loop 1.8s cubic-bezier(0.65, 0, 0.35, 1) infinite;
+}
+.scroll-icon { width: 21px; height: 24px; flex: none; }
+@keyframes scroll-arrow-loop {
+  0%   { transform: translateY(-32px); }
+  60%, 100% { transform: translateY(0); }
+}
+.scroll-text { margin: 0; font-size: 14px; text-align: center; }
+
+.about-image-marquee-wrap { display: flex; flex-direction: column; }
+.about-banner-image { width: 100%; height: auto; display: block; object-fit: cover; }
+.about-banner-marquee-wrap {
+  background-color: var(--orange);
+  padding: 32px 0;
+  display: flex;
+  overflow: hidden;
+}
+.about-marquee-track { display: flex; gap: 140px; flex: none; will-change: transform; }
+.about-marquee-text {
+  margin: 0;
+  font-family: var(--font-heading);
+  color: var(--white);
+  font-size: 32px;
+  line-height: 1;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ---------- Who we are ---------- */
+.who-we-are-section { padding-top: var(--section-pad); padding-bottom: var(--section-pad); }
+.who-we-are-layout { display: flex; flex-direction: column; gap: 64px; }
+.who-we-are-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+  max-width: 776px;
+  margin: 0 auto;
+}
+.h3.section-heading.who-we-are-heading,
+.h3.section-heading.our-vision-heading,
+.h3.section-heading.why-choose-us-heading { text-align: center; }
+.h3.section-heading.why-choose-us-heading { text-wrap: balance; }
+.image-paragraph-wrap { display: grid; grid-template-columns: 4fr 8fr; gap: 56px; }
+.who-we-are-image-text-wrap { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+.paragraph-xs.who-we-are-text { width: 100%; max-width: 176px; }
+.who-we-are-car-image { width: 100%; max-width: 197px; height: auto; border-radius: var(--radius); object-fit: contain; }
+.text-button-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 48px; }
+.who-we-are-image-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: start; }
+.appear-image-wrapper { position: relative; border-radius: var(--radius); overflow: hidden; }
+.who-we-are-image-one { display: block; width: 100%; height: 520px; object-fit: cover; transition: transform 0.3s ease; }
+.appear-image-wrapper:hover .who-we-are-image-one { transform: scale(1.1); }
+.overlay-image-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.appear-image-overlay { background-color: var(--white); width: 100%; height: 100%; margin-top: auto; transform-origin: bottom; }
+
+/* ---------- Our process ---------- */
+.our-process-section { background-color: var(--black); padding-top: var(--section-pad); padding-bottom: var(--section-pad); }
+.our-process-layout { display: flex; flex-direction: column; gap: 64px; }
+.our-process-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 750px;
+  margin: 0 auto;
+}
+.h3.our-process-heading { color: var(--white); text-align: center; }
+/* 12-column pyramid: one card on top, two below, two at the outer edges */
+.our-process-cards-wrap { display: grid; grid-template-columns: repeat(12, 1fr); grid-auto-rows: auto; row-gap: 64px; }
+.process-card-one   { grid-area: 1 / 5 / 2 / 9; }
+.process-card-two   { grid-area: 2 / 2 / 3 / 6; }
+.process-card-three { grid-area: 2 / 8 / 3 / 12; }
+.process-card-four  { grid-area: 3 / 1 / 4 / 5; }
+.process-card-five  { grid-area: 3 / 9 / 4 / 13; }
+.our-process-card {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  background-color: var(--white);
+  padding: 40px 32px;
+  width: 100%;
+  max-width: 400px;
+  height: 100%;
+  min-height: 526px;
+  position: relative;
+  overflow: hidden;
+}
+.step-text-image-wrap { display: flex; flex-direction: column; justify-content: space-between; gap: 16px; }
+.process-step-icon-wrap { display: flex; justify-content: space-between; align-items: center; position: relative; z-index: 1; }
+.our-process-card .h6.italic { font-size: 32px; line-height: 1.1; transition: color 0.5s; }
+.process-plus-icon { width: 32px; height: 32px; transition: transform 0.5s; }
+.step-image-wrap { width: 145px; height: 170px; }
+/* the image is positioned against the card: it sits in the 145x170 slot by
+   default and grows over the whole card on hover (source template behaviour) */
+.step-card-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 145px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 4px;
+  transform: translate(32px, 91px) scale(1);
+  filter: brightness(100%);
+  transition: width 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), height 0.5s cubic-bezier(0.075, 0.82, 0.165, 1),
+              transform 0.5s cubic-bezier(0.075, 0.82, 0.165, 1), filter 0.5s, border-radius 0.5s;
+}
+.process-card-heading-description-wrap { display: flex; flex-direction: column; margin-top: auto; position: relative; z-index: 1; }
+.paragraph-xl.step-card-heading { line-height: 1.2; font-weight: 500; transition: color 0.5s; }
+.process-text-content-wrapper { display: grid; grid-template-rows: 1fr; overflow: hidden; transition: grid-template-rows 0.5s; }
+.process-text-content { min-height: 0; padding-top: 16px; }
+.paragraph-xs.process-card-description { color: var(--gray-4); transition: color 0.5s; }
+@media (hover: hover) and (min-width: 992px) {
+  .our-process-card:hover .step-card-image { width: 100%; height: 100%; border-radius: 0; transform: translate(0, 0) scale(1.01); filter: brightness(50%); }
+  .our-process-card:hover .h6.italic,
+  .our-process-card:hover .step-card-heading,
+  .our-process-card:hover .process-card-description { color: var(--white); }
+  .our-process-card:hover .process-text-content-wrapper { grid-template-rows: 0fr; }
+  .our-process-card:hover .process-plus-icon { transform: rotate(45deg); }
+}
+
+/* ---------- Our promise (vision) ---------- */
+.our-vision-section { padding-top: var(--section-pad); padding-bottom: var(--section-pad); position: relative; }
+.our-vision-layout { display: flex; flex-direction: column; gap: 64px; position: relative; z-index: 1; }
+.our-vision-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  width: 100%;
+  max-width: 640px;
+  margin: 0 auto;
+}
+.vision-text-image-wrap { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; align-items: start; }
+.vision-text-button-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 48px; }
+.vision-heading-description-wrap { display: flex; flex-direction: column; gap: 24px; }
+.paragraph-xl.vision-card-heading { line-height: 1.3; font-weight: 500; }
+.vision-image { width: 100%; height: 583px; object-fit: cover; border-radius: 10px; }
+.container.our-vision-line { height: 100%; }
+.border-line.dashed-dark, .border-line.dashed-light { width: 1px; background: none; }
+.border-line.dashed-dark  { border-left: 1px dashed #0000004d; }
+.border-line.dashed-light { border-left: 1px dashed #ffffff4d; }
+
+/* ---------- Why choose us: sticky deck, cards start stacked in the middle
+   and spread to their grid slots as the section scrolls (source template) ---------- */
+.travel-drive-choose-us-section {
+  background-color: var(--smoke);
+  padding-top: var(--section-pad);
+  padding-bottom: var(--section-pad);
+  height: 250vh;
+  position: relative;
+}
+.container.drive-travel-sticky { position: sticky; top: 40px; }
+.travel-drive-layout { display: flex; flex-direction: column; gap: 64px; }
+.travel-drive-heading-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 24px;
+  text-align: center;
+  max-width: 917px;
+  margin: 0 auto;
+}
+.drive-travel-cards-wrap { display: grid; grid-template-columns: repeat(4, 1fr); gap: 32px; }
+.travel-drive-card { background-color: var(--white); border: 1px solid #0003; border-radius: var(--radius); padding: 6px; will-change: transform; }
+.travel-drive-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 390px;
+  padding: 18px;
+  border-radius: var(--radius);
+  background-color: var(--white);
+  transition: background-color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+.travel-drive-card-icon { display: flex; justify-content: center; align-items: center; width: 56px; height: 56px; color: var(--black); transition: color 0.5s; }
+.travel-drive-card-icon svg { width: 100%; height: 100%; display: block; }
+.travel-drive-text-content-wrap { display: flex; flex-direction: column; gap: 16px; }
+.paragraph-xl.travel-drive-card-heading { font-size: 28px; line-height: 1.3; font-weight: 500; color: var(--black); transition: color 0.5s; }
+.paragraph-xs.travel-drive-description { color: var(--gray-4); transition: color 0.5s; }
+.travel-drive-card:hover .travel-drive-card-content { background-color: var(--orange); }
+.travel-drive-card:hover .travel-drive-card-icon,
+.travel-drive-card:hover .travel-drive-card-heading,
+.travel-drive-card:hover .travel-drive-description { color: var(--white); }
+
+/* ---------- The fleet (team layout) ---------- */
+.meet-our-team-section { background-color: var(--black); padding-top: var(--section-pad); padding-bottom: var(--section-pad); position: relative; }
+.our-team-section-layout { display: grid; grid-template-columns: 5fr 7fr; gap: 64px 16px; position: relative; z-index: 1; }
+.our-team-heading-wrap { display: flex; flex-direction: column; gap: 24px; position: sticky; top: 25px; align-self: start; }
+.our-team-heading-wrap .team-designation { max-width: 420px; }
+.our-team-cards-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 128px 64px; position: relative; }
+.team-card { display: flex; flex-direction: column; gap: 24px; text-decoration: none; }
+.team-card:nth-child(2) { margin-top: 128px; }
+.team-image-wrap { border-radius: 10px; overflow: hidden; background-color: var(--dark); aspect-ratio: 4 / 3; }
+.our-team-image { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.team-card:hover .our-team-image { transform: scale(1.04); }
+.our-team-text-wrap { display: flex; flex-direction: column; gap: 8px; }
+.paragraph-xs.team-designation { color: #bebebe; }
+
+.cta-section.about-cta-section { padding-top: var(--section-pad); }
+
+/* ---------- About page: tablet ---------- */
+@media (max-width: 991px) {
+  .nav-menu.nav-menu-dark { background-color: var(--white); border: 1px solid #0000001a; }
+  .about-banner-layout { gap: 48px; }
+  .about-social-count-wrap { grid-template-columns: 1fr; width: 100%; margin-top: 24px; }
+  .social-links-wrap { flex-direction: row; justify-content: flex-start; align-items: flex-start; }
+  .social-link-wrap { justify-content: flex-start; }
+  .scroll-button { display: none; }
+  .about-marquee-track { gap: 80px; }
+  .about-marquee-text { font-size: 26px; }
+
+  .image-paragraph-wrap { grid-template-columns: 1fr; }
+  .who-we-are-image-text-wrap { display: none; }
+  .who-we-are-image-wrap { gap: 32px; }
+  .who-we-are-image-one { height: 250px; }
+  .overlay-image-wrapper { display: none; }
+
+  .our-process-cards-wrap { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .process-card-one, .process-card-two, .process-card-three, .process-card-four, .process-card-five { grid-area: auto; }
+  .our-process-card { max-width: none; min-height: auto; }
+  .step-image-wrap { width: 100%; height: 200px; }
+  .step-card-image { position: static; width: 100%; height: 100%; transform: none; }
+  .process-plus-icon { display: none; }
+
+  .vision-text-image-wrap { grid-template-columns: 1fr 1fr; }
+  .vision-image { height: 450px; }
+  .wide-line-wrap { display: none; }
+
+  .travel-drive-choose-us-section { height: auto; }
+  .container.drive-travel-sticky { position: static; }
+  .drive-travel-cards-wrap { grid-template-columns: 1fr 1fr; }
+  .travel-drive-card { transform: none !important; }
+  .travel-drive-card-content { height: auto; gap: 40px; padding: 16px; }
+  .travel-drive-card-icon { width: 48px; height: 48px; }
+
+  .our-team-section-layout { grid-template-columns: 1fr; }
+  .our-team-heading-wrap { position: static; }
+  .our-team-cards-wrap { gap: 32px; }
+  .team-card:nth-child(2) { margin-top: 0; }
+}
+
+/* ---------- About page: phone ---------- */
+@media (max-width: 767px) {
+  .about-count-wrap { grid-template-columns: 1fr 1fr; gap: 40px; }
+  .h3.section-heading.who-we-are-heading { text-align: center; }
+  .about-marquee-track { gap: 60px; }
+  .about-marquee-text { font-size: 22px; }
+  .who-we-are-image-one { height: 200px; }
+  .our-process-cards-wrap { grid-template-columns: 1fr; }
+  .vision-image { height: 350px; }
+  .paragraph-xl.travel-drive-card-heading { font-size: 20px; }
+}
+
+@media (max-width: 479px) {
+  .about-count-wrap { grid-template-columns: 1fr; }
+  .social-links-wrap { flex-wrap: wrap; }
+  .about-marquee-track { gap: 40px; }
+  .h3.section-heading.who-we-are-heading,
+  .h3.section-heading.our-vision-heading,
+  .h3.section-heading.why-choose-us-heading,
+  .h3.our-process-heading { text-align: left; }
+  .who-we-are-heading-wrap, .our-process-heading-wrap, .our-vision-heading-wrap, .travel-drive-heading-wrap { align-items: flex-start; text-align: left; }
+  .who-we-are-image-wrap, .vision-text-image-wrap, .drive-travel-cards-wrap, .our-team-cards-wrap { grid-template-columns: 1fr; }
+  .vision-image { height: 200px; }
+  .travel-drive-card-icon { width: 42px; height: 42px; }
+  .paragraph-xl.travel-drive-card-heading { font-size: 18px; }
+}
+
+/* ==========================================================================
+   Car model pages
+   ========================================================================== */
+.car-cms-section { padding-top: 0; padding-bottom: var(--section-pad); }
+.car-cms-layout { display: flex; flex-direction: column; gap: 64px; }
+.car-cms-layout .navbar-section.home-banner-navbar { margin-bottom: 0; }
+.button-heading-wrap { display: flex; flex-direction: column; align-items: flex-start; gap: 48px; }
+.heading-description-wrap { display: flex; flex-direction: column; gap: 24px; width: 100%; max-width: 775px; }
+
+/* white "Back to Models" button: content slides 28px, arrows swap (source IX) */
+.button-white {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex: none;
+  border-radius: var(--radius);
+  padding: 12px 16px;
+  text-decoration: none;
+}
+.button-white.service-details-button { background-color: #f5f5f5; border: 1px solid #efefef; }
+.white-button-content-wrap { overflow: hidden; }
+.white-button-content {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  position: relative;
+  transform: translateX(28px);
+  transition: transform 0.3s ease-in-out;
+}
+.arrow-icon-white { width: 16px; height: 14px; flex: none; transition: opacity 0.3s ease-in-out; }
+.arrow-icon-white.special-card-arrow.one { position: absolute; left: -28px; opacity: 1; }
+.arrow-icon-white.special-card-arrow.two { opacity: 0; }
+.paragraph-xs.blog-button-text { color: var(--black); font-weight: 700; white-space: nowrap; }
+.button-white:hover .white-button-content { transform: translateX(0); }
+.button-white:hover .arrow-icon-white.special-card-arrow.one { opacity: 0; }
+.button-white:hover .arrow-icon-white.special-card-arrow.two { opacity: 1; }
+
+.car-features-wrap { display: grid; grid-template-columns: repeat(5, 1fr); gap: 64px; }
+.car-feature { display: flex; flex-direction: column; gap: 6px; padding-bottom: 16px; border-bottom: 1px solid #0000004d; }
+.paragraph-xs.feature-title, .paragraph-xs.rental-title { color: var(--gray-4); }
+.paragraph-xs.feature-title { text-transform: uppercase; }
+
+.car-image-description-wrap { display: grid; grid-template-columns: 8fr 4fr; gap: 40px; align-items: start; position: relative; }
+.car-template-cms-content-wrap { display: flex; flex-direction: column; gap: 32px; }
+.car-cms-template-image { width: 100%; height: 700px; object-fit: cover; border-radius: var(--radius); display: block; }
+.car-template-rich-text h6 { font-family: var(--font-heading); font-size: var(--h6-size); font-weight: 500; line-height: 1.1; margin: 0 0 24px; }
+.car-template-rich-text p { margin: 0 0 32px; color: var(--gray-4); font-size: 16px; line-height: 1.5; }
+.car-template-rich-text ul { margin: 0 0 32px; padding-left: 24px; list-style-type: disc; }
+.car-template-rich-text li { font-size: 16px; line-height: 1.5; color: var(--gray-4); margin-bottom: 6px; }
+.car-description-image-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+.car-description-image { width: 100%; height: 384px; object-fit: cover; border-radius: var(--radius); display: block; background-color: var(--smoke); }
+
+.pricing-terms-wrap {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 32px;
+  padding: 48px 32px;
+  border-radius: 10px;
+  background-color: var(--smoke);
+  position: sticky;
+  top: 10px;
+}
+.rental-content-wrap { display: flex; flex-direction: column; gap: 16px; width: 100%; padding: 24px; border-radius: 10px; background-color: var(--white); }
+.paragraph-l.rental-content { font-weight: 500; }
+
+/* similar models */
+.car-card-section { background-color: var(--smoke); padding-top: var(--section-pad); padding-bottom: var(--section-pad); }
+.car-card-layout { display: flex; flex-direction: column; gap: 64px; }
+.car-heading-wrap { display: flex; justify-content: space-between; align-items: flex-end; gap: 24px; }
+.car-heading-title-wrap { display: flex; flex-direction: column; gap: 24px; }
+.car-cards-wrap { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+.car-page-card { display: flex; flex-direction: column; gap: 24px; height: 100%; text-decoration: none; }
+.car-page-image-wrap { border-radius: 10px; max-height: 463px; overflow: hidden; }
+.car-card-image { width: 100%; height: 100%; min-height: 315px; object-fit: cover; display: block; transition: transform 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.car-text-content-wrap { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.car-name-price-wrap { display: flex; flex-direction: column; gap: 8px; }
+.car-name-price-wrap .h6 { font-size: 24px; transition: color 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+.location-price-wrap { display: flex; align-items: center; gap: 4px; }
+.car-version-list { margin: 0; padding-left: 20px; }
+.paragraph-xs.car-version { color: var(--gray-4); }
+.car-page-card:hover .car-card-image { transform: scale(1.1); }
+.car-page-card:hover .h6 { color: var(--orange); }
+
+@media (max-width: 991px) {
+  .car-features-wrap { grid-template-columns: 1fr 1fr 1fr; gap: 32px; }
+  .car-image-description-wrap { grid-template-columns: 1fr; position: static; }
+  .pricing-terms-wrap { position: static; width: 100%; }
+  .car-cms-template-image { height: 450px; }
+  .car-description-image { height: 250px; }
+  .car-cards-wrap { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 767px) {
+  .car-heading-wrap { flex-direction: column; align-items: flex-start; }
+  .car-cards-wrap { grid-template-columns: 1fr; gap: 52px; }
+  .car-cms-template-image { height: 350px; }
+  .car-description-image { height: 220px; }
+  .car-cms-layout, .car-card-layout { gap: 48px; }
+  .button-heading-wrap { gap: 32px; }
+}
+@media (max-width: 479px) {
+  .car-features-wrap { grid-template-columns: 1fr; gap: 24px; }
+  .car-cms-template-image { height: 180px; }
+  .car-description-image-wrap { grid-template-columns: 1fr; }
+  .car-description-image { height: 180px; }
+  .pricing-terms-wrap { padding: 32px 20px; }
+}
+
+/* fleet tabs on the home page: link to the model pages */
+.tab-details-button-wrap { display: flex; }
+.tab-name-link { color: inherit; text-decoration: none; transition: color 0.3s; }
+.tab-name-link:hover { color: var(--orange); }
+
+/* ==========================================================================
+   Cars page (all models)
+   ========================================================================== */
+.cars-page-section { padding-top: 0; padding-bottom: var(--section-pad); overflow: hidden; }
+.cars-page-layout { display: flex; flex-direction: column; gap: 48px; }
+.heading-category-link-wrap { display: flex; flex-direction: column; gap: 64px; }
+.cars-heading-wrap { width: 100%; max-width: 730px; }
+.category-link-wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 24px; }
+.category-link {
+  padding: 16px 24px;
+  border-radius: var(--radius);
+  color: var(--gray-4);
+  border: 1px solid #0003;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+.category-link:hover, .category-link.w--current { border-color: transparent; background-color: var(--orange); color: var(--white); }
+.paragraph-xs.category-button-text { font-weight: 500; }
+.car-page-cards-wrap { display: flex; flex-direction: column; gap: 64px; }
+.cars-categories-collection-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; }
+.project_items { width: 100%; }
+.project_items.is-hidden { display: none; }
+.car-collection-card { width: 100%; height: 100%; }
+.cars-page-section .car-page-image-wrap { max-height: 463px; }
+.cars-page-section .car-card-image { height: 463px; }
+.cars-page-section .car-name-price-wrap .h6 { font-size: var(--h6-size); }
+@media (max-width: 991px) {
+  .cars-page-section .car-card-image { height: 340px; }
+  .cars-page-layout { gap: 40px; }
+  .heading-category-link-wrap { gap: 40px; }
+}
+@media (max-width: 767px) {
+  .cars-categories-collection-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .cars-page-section .car-card-image { height: 260px; }
+  .category-link { padding: 12px 18px; }
 }
