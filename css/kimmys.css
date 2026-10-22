@@ -1858,3 +1858,641 @@ img[src*="life-8"] { object-position: 50% 70%; }
   .wopt__img { width: 80px; height: 50px; }
   .wnav { flex-wrap: wrap; }
 }
+
+/* ==========================================================================
+   Phone parity with the MetroRide template
+   --------------------------------------------------------------------------
+   Webflow redefines the type scale and section padding on <body> per
+   breakpoint (991 / 767 / 479); the rules below mirror those values and the
+   template's per-section phone rules so every page lays out the same as the
+   source on a phone. Appended last on purpose: it wins over earlier
+   breakpoint rules of equal specificity.
+   ========================================================================== */
+
+@media (max-width: 991px) {
+  :root {
+    --section-pad: 80px;
+    --h1-size: 56px; --h2-size: 42px; --h3-size: 36px; --h4-size: 28px; --h5-size: 24px; --h6-size: 22px;
+  }
+  .paragraph { font-size: 16px; }
+  .paragraph-xs { font-size: 16px; }
+  .paragraph-s { font-size: 16px; }
+  .paragraph-l { font-size: 20px; }
+  .paragraph-xl { font-size: 22px; line-height: 1.5; }
+  .h6.why-choose-us-card-heading, .h6.testimonial-name { font-size: 24px; }
+  .arrow-icon.first-arrow, .arrow-icon.second-arrow { display: none; }
+  a:hover > .text-icon-wrapper > .text-icon-content,
+  a:hover .text-icon-wrapper .text-icon-content { transform: none; }
+  .navbar-section.home-banner-navbar { padding-top: 20px; padding-bottom: 20px; margin-top: 0; }
+  .home-banner-layout { gap: 80px; }
+  .heading-button-card-wrap { gap: 20px; }
+  .award-card-content { gap: 30px; }
+  .why-choose-us-card { padding-left: 20px; padding-right: 20px; }
+  .why-choose-us-card-content { height: 250px; justify-content: space-between; }
+  .why-choose-use-card-icon { width: 30px; height: 30px; }
+  .testimonial-card-one { padding-left: 20px; padding-right: 20px; }
+  .numbers-card { padding: 40px 20px; }
+  .numbers-card-content { gap: 40px; height: auto; }
+  .numbers-overlay-blur { display: none; }
+  .faq-image { height: 300px; object-position: 50% 80%; }
+  .cta-layout { grid-template-columns: 1fr; padding-left: 64px; padding-right: 64px; }
+  .cta-text-button-wrap { padding-top: 64px; padding-bottom: 64px; }
+  .cta-image-wrap { display: none; }
+  .how-it-works-card { padding-left: 40px; padding-right: 40px; }
+  .how-it-works-card-content { gap: 52px; height: auto; }
+  .how-it-works-image { width: 40px; height: 40px; }
+  .travel-card-image { display: none !important; }
+  .discover-card-wrap { grid-template-columns: 8fr 4fr; }
+  .arrow-text-wrap { gap: 24px; }
+  .about-us-section { height: auto; padding-top: var(--section-pad); padding-bottom: var(--section-pad); display: flex; flex-direction: column; gap: 64px; }
+  .about-us-sticky-content { position: static; }
+  .about-us-slider-wrap { display: none; }
+  .about-us-image-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  .about-us-image-one, .about-us-image-two { height: 250px; margin-top: 0; }
+  .about-us-image-three { display: none; }
+  .drive-section { display: none; }
+  .model-small-image-wrap { display: none; }
+  .footer-image-bg-container { padding-top: 64px; }
+  .footer-links-wrap { gap: 48px; }
+  .menu-links-wrap { gap: 24px; }
+  .h1.footer-link.footer-large-text { font-size: 56px; white-space: normal; }
+  .footer-text-slider-wrap { gap: 24px; justify-content: space-between; }
+}
+
+@media (max-width: 767px) {
+  :root {
+    --h1-size: 56px; --h2-size: 36px; --h3-size: 32px; --h4-size: 26px; --h5-size: 22px; --h6-size: 20px;
+  }
+  .container { padding-left: 30px; padding-right: 30px; }
+  .footer-text-slider-wrap { padding: 0 30px; }
+  .paragraph, .paragraph-xs, .paragraph-s { font-size: 14px; }
+  .paragraph-l { font-size: 18px; }
+  .paragraph-xl { font-size: 20px; }
+  .h6.why-choose-us-card-heading { font-size: 20px; }
+  .navbar-time-pill-wrap { display: none; }
+  .navbar-section.home-banner-navbar { padding-bottom: 0; }
+  .home-banner-layout { gap: 40px; }
+  .home-banner-intro-content-wrap { margin-top: 40px; }
+  .heading-button-card-wrap { flex-direction: column; gap: 52px; }
+  .award-card-wrap { max-width: none; padding-left: 20px; padding-right: 20px; }
+  .section-heading-wrap { grid-template-columns: 1fr; }
+  .section-description-wrap { justify-content: flex-start; max-width: none; }
+  .section-description-icon { display: none; }
+  .paragraph-xs.why-choose-us-title { max-width: none; }
+  .why-choose-us-card-content { height: 200px; }
+  .why-choose-use-card-icon { width: 24px; height: 24px; }
+  .number-cards-wrap { grid-template-columns: 1fr; }
+  .faq-image-wrap { max-width: none; height: auto; }
+  .dropdown-icon { width: 32px; height: 32px; }
+  .how-it-works-cards-wrap { grid-template-columns: 1fr; }
+  .how-it-works-card-content { gap: 64px; }
+  .travel-comfort-heading-button-wrap { flex-direction: column; align-items: flex-start; gap: 32px; }
+  .comfort-card-icon { width: 18px; height: 16px; }
+  .about-us-image-one, .about-us-image-two { height: 180px; }
+  .tab-count-wrap { flex-direction: row; flex-wrap: wrap; justify-content: space-around; align-items: center; max-width: none; padding: 24px 16px; }
+  .tab-count-content { width: auto; max-width: none; }
+  .tab-text-content-wrap .model-tab-image-wrap.d-none { height: auto; aspect-ratio: 4 / 3; }
+  .slider-card-image { height: 250px; }
+  .mail-icon-wrap { flex-wrap: wrap; }
+  .menu-links-wrap { gap: 20px; }
+  .footer-menu-links-wrap { justify-content: space-between; }
+  .footer-multiple-text-container { padding-left: 30px; padding-right: 30px; }
+  .kimmys-footer-name { font-size: 72px; }
+}
+
+@media (max-width: 479px) {
+  :root {
+    --h1-size: 42px; --h2-size: 32px; --h3-size: 28px; --h4-size: 24px; --h5-size: 22px; --h6-size: 18px;
+  }
+  .container { padding-left: 20px; padding-right: 20px; }
+  .footer-text-slider-wrap { padding: 0 20px; }
+  .paragraph-l { font-size: 16px; }
+  .paragraph-xl { font-size: 18px; }
+  .h6.why-choose-us-card-heading { font-size: 18px; }
+  .h6.testimonial-name { font-size: 22px; }
+  .h5.footer-mail { word-break: break-all; }
+  .brand-logo.kimmys-logo { width: 36px; }
+  .kimmys-logo-text { font-size: 20px; }
+  .home-banner-layout { gap: 30px; }
+  .heading-button-card-wrap { align-items: stretch; }
+  .award-card-content { gap: 20px; flex-wrap: wrap; }
+  .award-card-list { padding-left: 24px; }
+  .why-choose-us-cards-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .why-choose-us-card-content { height: 180px; }
+  .why-choose-use-card-icon { width: 20px; height: 20px; }
+  .testimonial-heading-wrap { align-items: flex-start; text-align: left; }
+  .testimonial-heading-wrap .section-heading { text-align: left; }
+  .testimonial-cards-wrap { grid-template-columns: 1fr; }
+  .testimonial-cards-wrap.inner-cards { gap: 40px; }
+  .numbers-heading-wrap { align-items: flex-start; text-align: left; }
+  .numbers-heading-wrap .section-heading { text-align: left; }
+  .number-cards-wrap { gap: 40px; }
+  .dropdown-icon-one, .dropdown-icon-two { width: 20px; }
+  .cta-layout { padding-left: 48px; padding-right: 48px; }
+  .cta-text-button-wrap { align-items: flex-start; }
+  .download-button-wrap { flex-direction: column; align-items: stretch; }
+  .how-it-works-card-content { gap: 52px; }
+  .how-it-works-image { width: 36px; height: 36px; }
+  .discover-card-wrap { grid-template-columns: 1fr; padding: 0 0 24px; }
+  .image-person-count-wrap { align-items: center; }
+  .count-wrap { flex-direction: row; }
+  .count-content { flex-wrap: wrap; gap: 8px; }
+  .about-us-image-wrap { grid-template-columns: 1fr; }
+  .about-us-image-one, .about-us-image-two { height: 150px; }
+  .featured-model-heading-wrap { align-items: flex-start; text-align: left; }
+  .featured-model-heading-wrap .section-heading { text-align: left; }
+  .core-service-heading-wrap { align-items: flex-start; text-align: left; }
+  .core-service-heading-wrap .section-heading, .h4.core-service-slider-heading { text-align: left; }
+  .tab-count-wrap { justify-content: space-between; }
+  .scroll-slider-cards-wrap { gap: 40px; }
+  .slider-card-image { height: 180px; }
+  .footer-links-mail-wrap { gap: 52px; }
+  .footer-links-wrap { gap: 52px; }
+  .menu-links-wrap { gap: 16px; }
+  .footer-menu-links-wrap { flex-direction: column; gap: 20px; }
+  .footer-text-slider-wrap { flex-wrap: wrap; }
+  .h1.footer-link.footer-large-text { font-size: 42px; }
+  .footer-multiple-text-container { padding-left: 20px; padding-right: 20px; }
+  .kimmys-footer-name { font-size: 56px; }
+}
+
+/* ==========================================================================
+   Template responsive deltas (generated from the computed styles of the
+   MetroRide template at 900 / 600 / 390 px; only what the template changes
+   versus the next wider breakpoint). Regenerate with gen_responsive.py.
+   ========================================================================== */
+
+@media (max-width: 991px) {
+  .about-banner-layout { flex-direction: row; flex-wrap: wrap-reverse; gap: 52px; }
+  .about-count-wrap { grid-template-columns: 1fr 1fr 1fr; gap: 72px; }
+  .about-social-count-wrap { grid-template-columns: 1fr; }
+  .about-us-banner-section { gap: 52px; padding-top: 80px; }
+  .about-us-heading-wrap { grid-template-columns: 1fr; }
+  .about-us-image-one { height: 250px; }
+  .about-us-image-three { display: none; }
+  .about-us-image-two { height: 250px; }
+  .about-us-image-wrap { flex-direction: column; grid-template-columns: 1fr 1fr; gap: 24px; padding-right: 40px; padding-left: 40px; }
+  .about-us-section { display: flex; flex-direction: column; gap: 52px; padding-top: 80px; padding-bottom: 80px; }
+  .arrow-text-wrap { gap: 24px; }
+  .award-card-content { gap: 30px; }
+  .button-heading-wrap { gap: 38px; }
+  .car-card-layout { gap: 52px; }
+  .car-card-section { padding-top: 80px; padding-bottom: 80px; }
+  .car-cards-wrap { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .car-cms-layout { gap: 52px; }
+  .car-cms-section { padding-top: 80px; padding-bottom: 80px; }
+  .car-cms-template-image { height: 450px; }
+  .car-description-image { height: 250px; }
+  .car-description-image-wrap { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .car-feature { padding-bottom: 12px; }
+  .car-features-wrap { grid-template-columns: 1fr 1fr 1fr; gap: 52px; }
+  .car-image-description-wrap { grid-template-columns: 1fr; gap: 32px; position: static; }
+  .car-page-cards-wrap { gap: 52px; }
+  .car-template-cms-content-wrap { gap: 24px; }
+  .car-text-content-wrap { gap: 12px; }
+  .car-version-list { padding-left: 16px; }
+  .cars-categories-collection-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 52px; }
+  .cars-page-layout { gap: 38px; }
+  .cars-page-section { padding-top: 80px; padding-bottom: 80px; }
+  .category-link { padding-top: 12px; padding-right: 16px; padding-bottom: 12px; padding-left: 16px; }
+  .category-link-wrap { flex-wrap: wrap; }
+  .contact-form-wrap { padding-top: 0px; padding-bottom: 0px; }
+  .contact-icon-info-wrap { gap: 24px; }
+  .contact-info-wrap { grid-template-columns: 1fr 1fr 1fr; padding-top: 32px; padding-right: 32px; padding-bottom: 32px; padding-left: 32px; }
+  .contact-input-field { padding-top: 12px; padding-right: 24px; padding-bottom: 12px; padding-left: 24px; }
+  .contact-input-tag-wrap { gap: 12px; }
+  .contact-text-area { padding-top: 12px; padding-right: 24px; padding-bottom: 12px; padding-left: 24px; border-radius: 16px; }
+  .contact-text-form-wrap { gap: 52px; }
+  .contact-us-layout { gap: 52px; }
+  .contact-us-section { padding-top: 80px; }
+  .core-service-container { padding-right: 40px; padding-left: 40px; }
+  .core-service-four { min-height: auto; position: static; }
+  .core-service-one { min-height: auto; position: static; }
+  .core-service-three { min-height: auto; position: static; }
+  .core-service-two { min-height: auto; position: static; }
+  .core-services-section { padding-top: 80px; padding-bottom: 80px; }
+  .cta-image-one { border-radius: 18px 18px 0px 0px; }
+  .cta-image-two { border-radius: 18px 18px 0px 0px; }
+  .cta-image-wrap { display: none; }
+  .cta-layout { grid-template-columns: 1fr; padding-right: 48px; padding-left: 48px; border-radius: 18px; }
+  .cta-section { padding-top: 80px; padding-bottom: 80px; }
+  .cta-text-button-wrap { gap: 32px; padding-top: 48px; padding-bottom: 48px; }
+  .discover-card-wrap { grid-template-columns: 1fr 1fr; padding-right: 24px; padding-bottom: 32px; padding-left: 24px; }
+  .down-arrow-icon-text-wrap { padding-bottom: 24px; }
+  .download-button-wrap { flex-wrap: wrap; }
+  .drive-section { display: none; }
+  .drive-travel-cards-wrap { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .drive-travel-sticky { padding-right: 40px; padding-left: 40px; }
+  .email-icon { height: 36px; width: 36px; }
+  .faq-dropdown { padding-bottom: 16px; }
+  .faq-dropdown-toggle { gap: 24px; }
+  .faq-dropdown-wrap { gap: 32px; }
+  .faq-heading-wrap { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .faq-image { height: 300px; object-position: 50% 80%; }
+  .faq-image-dropdown-wrap { grid-template-columns: 1fr; gap: 52px; }
+  .faq-image-wrap { max-width: none; }
+  .faq-layout { gap: 52px; }
+  .faq-section { padding-top: 80px; padding-bottom: 80px; }
+  .featured-model-layout { gap: 52px; }
+  .featured-model-section { padding-top: 80px; padding-bottom: 80px; }
+  .footer-image-bg-container { padding-top: 48px; }
+  .footer-links-content-wrap { gap: 18px; }
+  .footer-links-mail-wrap { gap: 38px; }
+  .footer-links-wrap { grid-template-columns: 1fr; gap: 38px; padding-top: 52px; padding-bottom: 52px; }
+  .heading-button-card-wrap { gap: 20px; }
+  .heading-category-link-wrap { gap: 52px; }
+  .heading-count-wrap { gap: 18px; }
+  .heading-select-box-wrap { gap: 52px; }
+  .home-banner-intro-content-wrap { grid-template-columns: 1fr 1fr; }
+  .home-banner-layout { gap: 80px; }
+  .home-banner-navbar { margin-top: 16px; position: relative; }
+  .home-banner-section { padding-bottom: 80px; }
+  .how-it-works-card { padding-top: 32px; padding-bottom: 32px; }
+  .how-it-works-card-content { gap: 40px; }
+  .how-it-works-cards-wrap { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .how-it-works-image { height: 40px; width: 40px; }
+  .how-it-works-layout { grid-template-columns: 1fr; gap: 52px; }
+  .how-it-works-section { padding-top: 80px; padding-bottom: 80px; }
+  .how-it-works-text-wrap { gap: 24px; }
+  .image-paragraph-wrap { grid-template-columns: 1fr; gap: 48px; }
+  .intro-content-wrap { padding-bottom: 12px; }
+  .keep-scrolling-text { display: none; }
+  .meet-our-team-section { padding-top: 80px; padding-bottom: 80px; }
+  .menu-links-wrap { gap: 24px; }
+  .name-field-wrap { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .navbar-button-wrap { display: none; }
+  .no-padding-bottom { gap: 52px; padding-top: 80px; }
+  .number-cards-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; align-items: stretch; }
+  .numbers-card { padding-right: 20px; padding-left: 20px; }
+  .numbers-card-content { gap: 32px; }
+  .numbers-heading-sticky { position: static; }
+  .numbers-layout { gap: 48px; }
+  .numbers-overlay-blur { display: none; }
+  .our-numbers-section { padding-top: 80px; padding-bottom: 80px; }
+  .our-process-cards-wrap { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .our-process-layout { gap: 52px; }
+  .our-process-section { padding-top: 80px; padding-bottom: 80px; }
+  .our-team-cards-wrap { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .our-team-heading-wrap { position: static; }
+  .our-team-section-layout { grid-template-columns: 1fr; row-gap: 52px; column-gap: 12px; position: static; }
+  .our-vision-layout { gap: 52px; }
+  .our-vision-section { padding-top: 80px; padding-bottom: 80px; }
+  .pricing-terms-wrap { gap: 24px; padding-top: 32px; padding-right: 24px; padding-bottom: 32px; padding-left: 24px; position: static; }
+  .process-card-heading-description-wrap { margin-top: 24px; }
+  .rental-content-wrap { gap: 12px; padding-top: 16px; padding-right: 16px; padding-bottom: 16px; padding-left: 16px; }
+  .scroll-slider-card { gap: 24px; padding-top: 24px; padding-right: 24px; padding-bottom: 24px; padding-left: 24px; }
+  .section-heading-wrap { grid-template-columns: 1fr 1fr; gap: 18px; }
+  .slider-card-image { height: 250px; }
+  .social-links-wrap { flex-direction: row; justify-content: flex-start; align-items: flex-start; }
+  .step-text-image-wrap { gap: 12px; }
+  .tab-count { gap: 12px; }
+  .tab-count-wrap { flex-direction: row; gap: 32px; padding-top: 24px; padding-right: 12px; padding-bottom: 24px; padding-left: 12px; max-width: none; justify-content: space-between; }
+  .tab-description-wrap { gap: 12px; }
+  .testimonial-card-content { gap: 52px; max-width: none; }
+  .testimonial-card-one { padding-right: 20px; padding-left: 20px; }
+  .testimonial-cards-wrap { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .testimonial-layout { gap: 52px; }
+  .testimonial-section { padding-top: 80px; padding-bottom: 80px; }
+  .text-button-wrap { gap: 38px; }
+  .title-list-item { padding-left: 16px; }
+  .travel-cards-wrap { gap: 72px; }
+  .travel-drive-card-icon { height: 48px; width: 48px; }
+  .travel-drive-choose-us-section { padding-top: 80px; padding-bottom: 80px; }
+  .travel-drive-layout { gap: 52px; }
+  .travel-for-comfort-layout { gap: 72px; }
+  .travel-for-comfort-section { padding-top: 80px; padding-bottom: 80px; }
+  .vision-heading { justify-content: flex-start; align-items: flex-start; }
+  .vision-heading-description-wrap { justify-content: flex-start; align-items: flex-start; }
+  .vision-image { height: 450px; }
+  .vision-text-button-wrap { gap: 38px; }
+  .vision-text-image-wrap { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .who-we-are-car-image { display: inline-block; width: 100%; }
+  .who-we-are-heading-wrap { gap: 12px; }
+  .who-we-are-image-one { height: 250px; }
+  .who-we-are-image-text-wrap { display: none; }
+  .who-we-are-image-wrap { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .who-we-are-layout { gap: 52px; }
+  .who-we-are-section { padding-top: 80px; padding-bottom: 80px; }
+  .why-choose-us-card { padding-top: 32px; padding-right: 20px; padding-bottom: 32px; padding-left: 20px; }
+  .why-choose-us-card-content { height: 250px; }
+  .why-choose-us-cards-wrap { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .why-choose-us-layout { gap: 52px; }
+  .why-choose-us-section { padding-top: 80px; padding-bottom: 80px; }
+  .why-choose-use-card-icon { height: 30px; width: 30px; }
+}
+
+@media (max-width: 767px) {
+  .about-banner-layout { gap: 40px; }
+  .about-count-wrap { grid-template-columns: 1fr 1fr; gap: 24px; }
+  .about-social-count-wrap { grid-template-columns: 1fr; }
+  .about-us-banner-section { gap: 40px; }
+  .about-us-heading-wrap { grid-template-columns: 1fr; }
+  .about-us-image-one { height: 180px; }
+  .about-us-image-two { height: 180px; }
+  .about-us-image-wrap { grid-template-columns: 1fr 1fr; gap: 20px; padding-right: 30px; padding-left: 30px; }
+  .about-us-section { gap: 40px; }
+  .arrow-text-wrap { gap: 16px; }
+  .award-card-content { max-width: none; }
+  .award-card-wrap { padding-right: 20px; padding-left: 20px; max-width: none; }
+  .black-navbar { display: none; }
+  .button-heading-wrap { gap: 30px; }
+  .car-card-layout { gap: 40px; }
+  .car-cards-wrap { grid-template-columns: 1fr; row-gap: 32px; column-gap: 20px; }
+  .car-cms-layout { gap: 40px; }
+  .car-cms-template-image { height: 350px; }
+  .car-description-image { height: 220px; }
+  .car-description-image-wrap { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .car-features-wrap { grid-template-columns: 1fr 1fr 1fr; gap: 40px; }
+  .car-heading-title-wrap { gap: 16px; }
+  .car-heading-wrap { flex-direction: column; gap: 16px; align-items: flex-start; }
+  .car-image-description-wrap { grid-template-columns: 1fr; gap: 24px; }
+  .car-page-card { gap: 16px; }
+  .car-page-cards-wrap { gap: 40px; }
+  .car-template-cms-content-wrap { gap: 20px; }
+  .car-version-list { padding-left: 12px; }
+  .cars-categories-collection-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .cars-page-layout { gap: 30px; }
+  .category-link { padding-right: 12px; padding-left: 12px; }
+  .category-link-wrap { gap: 16px; }
+  .comfort-card-icon { height: 16px; width: 18px; }
+  .contact-icon-info-wrap { gap: 20px; }
+  .contact-info-wrap { grid-template-columns: 1fr 1fr; padding-top: 24px; padding-right: 24px; padding-bottom: 24px; padding-left: 24px; }
+  .contact-input-field { padding-right: 16px; padding-left: 16px; }
+  .contact-text-area { padding-right: 16px; padding-left: 16px; height: 120px; }
+  .contact-text-form-wrap { gap: 40px; }
+  .contact-us-layout { gap: 40px; }
+  .core-service-container { padding-right: 30px; padding-left: 30px; }
+  .core-service-heading-wrap { gap: 16px; }
+  .count-content { gap: 16px; }
+  .cta-image-one { border-radius: 16px 16px 0px 0px; }
+  .cta-image-two { border-radius: 16px 16px 0px 0px; }
+  .cta-layout { grid-template-columns: 1fr; padding-right: 32px; padding-left: 32px; border-radius: 16px; }
+  .cta-text-button-wrap { gap: 24px; padding-top: 32px; padding-bottom: 32px; }
+  .cta-text-wrap { gap: 16px; }
+  .discover-card-wrap { grid-template-columns: 1fr 1fr; padding-right: 20px; padding-bottom: 24px; padding-left: 20px; }
+  .down-arrow-icon-text-wrap { padding-bottom: 16px; }
+  .download-button-wrap { gap: 16px; }
+  .drive-travel-cards-wrap { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .drive-travel-sticky { padding-right: 30px; padding-left: 30px; }
+  .dropdown-icon { height: 32px; width: 32px; }
+  .faq-dropdown { padding-bottom: 12px; }
+  .faq-dropdown-toggle { gap: 20px; }
+  .faq-dropdown-wrap { gap: 24px; }
+  .faq-heading-wrap { grid-template-columns: 1fr; gap: 16px; }
+  .faq-image-dropdown-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .faq-layout { gap: 40px; }
+  .featured-model-heading-wrap { gap: 16px; }
+  .featured-model-layout { gap: 40px; }
+  .footer-image-bg-container { padding-top: 32px; }
+  .footer-links-content-wrap { gap: 16px; }
+  .footer-links-mail-wrap { gap: 30px; }
+  .footer-links-wrap { grid-template-columns: 1fr; gap: 30px; padding-top: 40px; padding-bottom: 40px; }
+  .heading-button-card-wrap { flex-direction: column; gap: 52px; }
+  .heading-category-link-wrap { gap: 40px; }
+  .heading-count-wrap { gap: 16px; }
+  .heading-description-wrap { gap: 16px; }
+  .heading-select-box-wrap { gap: 40px; }
+  .home-banner-intro-content-wrap { grid-template-columns: 1fr; margin-top: 40px; }
+  .home-banner-layout { gap: 40px; }
+  .home-banner-navbar { margin-top: 12px; }
+  .how-it-works-card { padding-top: 24px; padding-right: 24px; padding-bottom: 24px; padding-left: 24px; }
+  .how-it-works-cards-wrap { grid-template-columns: 1fr; gap: 16px; }
+  .how-it-works-heading-title-wrap { gap: 16px; }
+  .how-it-works-layout { grid-template-columns: 1fr; gap: 40px; }
+  .how-it-works-text-wrap { gap: 20px; }
+  .image-paragraph-wrap { grid-template-columns: 1fr; gap: 40px; }
+  .keep-scrolling-text { gap: 16px; }
+  .mail-icon-wrap { flex-wrap: wrap; }
+  .menu-links-wrap { gap: 20px; }
+  .name-field-wrap { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .no-padding-bottom { gap: 40px; }
+  .number-cards-wrap { grid-template-columns: 1fr; gap: 20px; }
+  .numbers-card { padding-top: 24px; padding-bottom: 24px; }
+  .numbers-card-content { gap: 24px; }
+  .numbers-heading-wrap { gap: 16px; }
+  .numbers-layout { gap: 32px; }
+  .our-process-cards-wrap { grid-template-columns: 1fr; gap: 24px; }
+  .our-process-heading-wrap { gap: 16px; }
+  .our-process-layout { gap: 40px; }
+  .our-team-cards-wrap { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .our-team-heading-wrap { gap: 16px; }
+  .our-team-section-layout { grid-template-columns: 1fr; row-gap: 40px; column-gap: 12px; }
+  .our-vision-heading-wrap { gap: 16px; }
+  .our-vision-layout { gap: 40px; }
+  .pricing-terms-wrap { gap: 20px; padding-top: 24px; padding-right: 16px; padding-bottom: 24px; padding-left: 16px; }
+  .process-card-heading-description-wrap { margin-top: 0px; }
+  .rental-content-wrap { padding-top: 12px; padding-right: 12px; padding-bottom: 12px; padding-left: 12px; }
+  .scroll-slider-card { gap: 20px; padding-top: 16px; padding-right: 16px; padding-bottom: 16px; padding-left: 16px; }
+  .section-description-icon { display: none; }
+  .section-description-wrap { max-width: none; justify-content: flex-start; }
+  .section-heading-wrap { grid-template-columns: 1fr; gap: 16px; }
+  .social-links-wrap { gap: 16px; }
+  .tab-count-content { max-width: none; }
+  .tab-count-wrap { gap: 24px; padding-top: 16px; padding-bottom: 16px; justify-content: space-around; }
+  .team-card { gap: 16px; }
+  .testimonial-card-content { gap: 40px; }
+  .testimonial-card-one { padding-top: 16px; padding-bottom: 16px; }
+  .testimonial-cards-wrap { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .testimonial-heading-wrap { gap: 16px; }
+  .testimonial-layout { gap: 40px; }
+  .text-button-wrap { gap: 30px; }
+  .title-heading-wrap { gap: 16px; }
+  .title-list-item { padding-left: 12px; }
+  .travel-cards-wrap { gap: 64px; }
+  .travel-comfort-heading-button-wrap { flex-direction: column; gap: 20px; align-items: flex-start; }
+  .travel-comfort-heading-title-wrap { gap: 16px; }
+  .travel-drive-heading-wrap { gap: 16px; }
+  .travel-drive-layout { gap: 40px; }
+  .travel-for-comfort-layout { gap: 64px; }
+  .vision-heading { gap: 16px; }
+  .vision-heading-description-wrap { gap: 16px; }
+  .vision-image { height: 350px; }
+  .vision-text-button-wrap { gap: 30px; }
+  .vision-text-image-wrap { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .white-navbar { display: none; }
+  .who-we-are-image-one { height: 200px; }
+  .who-we-are-image-wrap { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .who-we-are-layout { gap: 40px; }
+  .why-choose-us-card { padding-top: 24px; padding-bottom: 24px; }
+  .why-choose-us-card-content { height: 200px; }
+  .why-choose-us-card-text-wrap { gap: 16px; }
+  .why-choose-us-cards-wrap { grid-template-columns: 1fr 1fr; gap: 20px; }
+  .why-choose-us-layout { gap: 40px; }
+  .why-choose-us-title { max-width: none; }
+  .why-choose-use-card-icon { height: 24px; width: 24px; }
+}
+
+@media (max-width: 479px) {
+  .about-banner-layout { gap: 32px; }
+  .about-count-wrap { grid-template-columns: 1fr; }
+  .about-social-count-wrap { grid-template-columns: 1fr; }
+  .about-us-banner-section { gap: 32px; }
+  .about-us-heading-wrap { grid-template-columns: 1fr; }
+  .about-us-image-one { height: 150px; }
+  .about-us-image-two { height: 150px; }
+  .about-us-image-wrap { grid-template-columns: 1fr; gap: 16px; padding-right: 20px; padding-left: 20px; }
+  .about-us-section { gap: 32px; }
+  .award-card-content { flex-direction: row; flex-wrap: wrap; gap: 20px; }
+  .button-heading-wrap { gap: 24px; }
+  .car-card-image { height: 315px; }
+  .car-card-layout { gap: 32px; }
+  .car-cards-wrap { grid-template-columns: 1fr; row-gap: 32px; column-gap: 16px; }
+  .car-cms-layout { gap: 32px; }
+  .car-cms-template-image { height: 180px; }
+  .car-description-image { height: 180px; }
+  .car-description-image-wrap { grid-template-columns: 1fr; gap: 16px; }
+  .car-features-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .car-image-description-wrap { grid-template-columns: 1fr; }
+  .car-page-cards-wrap { gap: 32px; }
+  .car-template-cms-content-wrap { gap: 16px; }
+  .cars-categories-collection-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .cars-page-layout { gap: 24px; }
+  .contact-icon-info-wrap { gap: 16px; }
+  .contact-info-wrap { grid-template-columns: 1fr; }
+  .contact-input-field { border-radius: 16px; }
+  .contact-text-form-wrap { gap: 32px; }
+  .contact-us-layout { gap: 32px; }
+  .core-service-container { padding-right: 20px; padding-left: 20px; }
+  .core-service-heading-wrap { text-align: left; align-items: flex-start; }
+  .count-content { flex-wrap: wrap; gap: 8px; }
+  .count-wrap { flex-direction: row; }
+  .cta-image-one { border-radius: 14px 14px 0px 0px; }
+  .cta-image-two { border-radius: 14px 14px 0px 0px; }
+  .cta-layout { grid-template-columns: 1fr; padding-right: 24px; padding-left: 24px; border-radius: 14px; }
+  .cta-text-button-wrap { justify-content: flex-start; align-items: flex-start; }
+  .discover-card-wrap { grid-template-columns: 1fr; padding-right: 0px; padding-bottom: 12px; padding-left: 0px; }
+  .download-button-wrap { flex-direction: column; flex-wrap: nowrap; align-items: stretch; }
+  .drive-travel-cards-wrap { grid-template-columns: 1fr; gap: 16px; }
+  .drive-travel-sticky { padding-right: 20px; padding-left: 20px; }
+  .faq-dropdown-toggle { gap: 16px; }
+  .faq-heading-wrap { grid-template-columns: 1fr; gap: 14px; }
+  .faq-image-dropdown-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .faq-layout { gap: 32px; }
+  .featured-model { text-align: left; }
+  .featured-model-heading-wrap { text-align: left; align-items: flex-start; }
+  .featured-model-layout { gap: 32px; }
+  .footer-links-content-wrap { gap: 14px; }
+  .footer-links-mail-wrap { gap: 32px; }
+  .footer-links-wrap { grid-template-columns: 1fr; gap: 32px; padding-top: 32px; padding-bottom: 32px; }
+  .footer-menu-links-wrap { flex-direction: column; gap: 20px; }
+  .heading-button-card-wrap { align-items: center; }
+  .heading-category-link-wrap { gap: 32px; }
+  .heading-count-wrap { gap: 14px; }
+  .heading-select-box-wrap { gap: 32px; }
+  .home-banner-intro-content-wrap { grid-template-columns: 1fr; }
+  .home-banner-layout { gap: 30px; }
+  .how-it-works-card-content { gap: 32px; }
+  .how-it-works-cards-wrap { grid-template-columns: 1fr; gap: 14px; }
+  .how-it-works-image { height: 36px; width: 36px; }
+  .how-it-works-layout { grid-template-columns: 1fr; gap: 32px; }
+  .how-it-works-text-wrap { gap: 16px; }
+  .image-paragraph-wrap { grid-template-columns: 1fr; gap: 36px; }
+  .image-person-count-wrap { justify-content: flex-start; }
+  .menu-links-wrap { gap: 16px; }
+  .name-field-wrap { grid-template-columns: 1fr; gap: 16px; }
+  .no-padding-bottom { gap: 32px; }
+  .number-cards-wrap { grid-template-columns: 1fr; gap: 24px; }
+  .numbers-heading-wrap { justify-content: flex-start; align-items: flex-start; }
+  .our-process-cards-wrap { grid-template-columns: 1fr; }
+  .our-process-heading { text-align: left; }
+  .our-process-heading-wrap { justify-content: flex-start; align-items: flex-start; }
+  .our-process-layout { gap: 32px; }
+  .our-team-cards-wrap { grid-template-columns: 1fr; gap: 24px; }
+  .our-team-section-layout { grid-template-columns: 1fr; row-gap: 32px; column-gap: 12px; }
+  .our-vision-heading { text-align: left; }
+  .our-vision-heading-wrap { justify-content: flex-start; align-items: flex-start; }
+  .our-vision-layout { gap: 32px; }
+  .pricing-terms-wrap { gap: 16px; }
+  .scroll-slider-card { gap: 16px; }
+  .section-heading-wrap { grid-template-columns: 1fr; gap: 14px; }
+  .slider-card-image { height: 180px; }
+  .social-links-wrap { flex-wrap: wrap; }
+  .tab-count-wrap { flex-wrap: wrap; justify-content: space-between; }
+  .testimonial-card-content { gap: 32px; }
+  .testimonial-cards-wrap { grid-template-columns: 1fr; gap: 24px; }
+  .testimonial-heading-wrap { align-items: flex-start; }
+  .testimonial-layout { gap: 32px; }
+  .text-button-wrap { gap: 24px; }
+  .travel-cards-wrap { gap: 52px; }
+  .travel-comfort-heading-button-wrap { gap: 16px; }
+  .travel-drive-card-icon { height: 42px; width: 42px; }
+  .travel-drive-heading-wrap { justify-content: flex-start; align-items: flex-start; }
+  .travel-drive-layout { gap: 32px; }
+  .travel-for-comfort-layout { gap: 52px; }
+  .vision-image { height: 200px; }
+  .vision-text-button-wrap { gap: 24px; }
+  .vision-text-image-wrap { grid-template-columns: 1fr 1fr; gap: 16px; }
+  .who-we-are-heading { text-align: left; }
+  .who-we-are-heading-wrap { justify-content: flex-start; align-items: flex-start; }
+  .who-we-are-image-wrap { grid-template-columns: 1fr; gap: 16px; }
+  .who-we-are-layout { gap: 32px; }
+  .why-choose-us-card-content { height: 180px; }
+  .why-choose-us-cards-wrap { grid-template-columns: 1fr; gap: 24px; }
+  .why-choose-us-heading { text-align: left; }
+  .why-choose-us-layout { gap: 32px; }
+  .why-choose-use-card-icon { height: 20px; width: 20px; }
+}
+
+/* hand-written companions to the generated block */
+@media (max-width: 991px) {
+  .about-us-image-one, .about-us-image-two, .about-us-image-three { grid-column: auto; margin-top: 0; }
+  .about-us-image-wrap { display: grid; }
+  .numbers-heading-wrap .section-heading { filter: none !important; opacity: 1 !important; }
+}
+@media (max-width: 479px) {
+  .dropdown-icon-one, .dropdown-icon-two { width: 32px; }
+  .numbers-heading-wrap .section-heading, .testimonial-heading-wrap .section-heading, .featured-model-heading-wrap .section-heading, .core-service-heading-wrap .section-heading { text-align: left; }
+}
+/* FAQ icon: two dashes, the second turned upright so they read as a plus;
+   an open item lays it flat again (minus), as in the template */
+.dropdown-icon-two { transform: translate(-50%, -50%) rotate(90deg); }
+.faq-dropdown.open .dropdown-icon-one { transform: translate(-50%, -50%); opacity: 1; }
+.faq-dropdown.open .dropdown-icon-two { transform: translate(-50%, -50%) rotate(0deg); }
+
+/* about banner on tablet/phone: our navbar sits inside the banner layout,
+   so order it explicitly (template reverses the wrap to put the heading first) */
+@media (max-width: 991px) {
+  .about-banner-layout { display: flex; flex-direction: column; flex-wrap: nowrap; }
+  .about-banner-layout > .navbar-section { order: 0; }
+  .about-banner-layout > .heading-scroll-button-wrap { order: 1; }
+  .about-banner-layout > .about-social-count-wrap { order: 2; margin-top: 0; }
+}
+/* the template only capitalises the spec labels on wide screens */
+@media (max-width: 1279px) {
+  .paragraph-xs.feature-title { text-transform: none; }
+}
+
+/* template values for the classes the generator skipped (probed at 900/600/390) */
+@media (max-width: 991px) {
+  .our-process-card { gap: 32px; padding: 32px 24px; }
+  .step-text-image-wrap { gap: 12px; }
+  .process-text-content { padding-top: 12px; }
+  .travel-drive-card-content { gap: 32px; padding: 16px; }
+  .travel-drive-text-content-wrap { gap: 16px; }
+  .scroll-slider-cards-wrap { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+  .core-service-slider-card { max-width: 600px; }
+  .left-content-wrap { display: flex; flex-direction: column; gap: 64px; }
+  .tab-text-content-wrap { gap: 24px; padding-bottom: 0; }
+  .contact-us-form-content { gap: 24px; }
+  .contact-us-form .wizard { gap: 24px; }
+  .about-banner-layout { gap: 52px; }
+}
+@media (max-width: 767px) {
+  .our-process-card { gap: 24px; padding: 24px 16px; }
+  .travel-drive-card-content { gap: 24px; }
+  .scroll-slider-cards-wrap { grid-template-columns: 1fr; }
+  .left-content-wrap { gap: 52px; }
+  .tab-text-content-wrap { gap: 20px; }
+  .contact-us-form-content { gap: 20px; }
+  .contact-us-form .wizard { gap: 20px; }
+  .about-banner-layout { gap: 40px; }
+  .footer-text-slider-wrap { padding-left: 40px; padding-right: 40px; }
+}
+@media (max-width: 479px) {
+  .scroll-slider-cards-wrap { gap: 24px; }
+  .left-content-wrap { gap: 40px; }
+  .tab-text-content-wrap { gap: 16px; }
+  .contact-us-form-content { gap: 16px; }
+  .contact-us-form .wizard { gap: 16px; }
+  .about-banner-layout { gap: 32px; }
+}

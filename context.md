@@ -68,3 +68,8 @@ High-end clientele: business travellers, executives and VIP guests flying into B
 ## Technical rules
 - Never use CSS `scroll-behavior: smooth` on this site: it breaks ScrollTrigger.refresh() while scrolled (fleet opened on the wrong car, thumbnail jumps landed off-section). Smooth anchor scrolling is done in js/main.js.
 - MetroRide Webflow interactions (IX2 JSON) can be extracted from their webflow.schunk.*.js bundle; see the teardown notes in the build chat (events keyed by data-w-id, page-prefixed ids).
+
+## Phone layout (2026-10-22)
+- Phone/tablet layout mirrors the MetroRide template exactly. Two blocks at the end of css/kimmys.css do it: "Phone parity" (the template's per-breakpoint type scale: h1 56/56/42, h2 42/36/32, h3 36/32/28, h4 28/26/24, h5 24/22/22, h6 22/20/18, paragraph 16/14/14, section padding 80) and "Template responsive deltas" (407 rules generated from the template's computed styles at 900/600/390 px; only what changes versus the next wider breakpoint).
+- Generator: scratch script gen_responsive.py (probes metroride.webflow.io over CDP for every class our pages use). Regenerate rather than hand-edit if the template changes.
+- Kept on purpose where we differ from the template: "View Details" buttons in the fleet tabs, the booking wizard, our footer marquee.
