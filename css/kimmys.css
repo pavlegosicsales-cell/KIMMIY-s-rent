@@ -1805,7 +1805,7 @@ img[src*="life-8"] { object-position: 50% 70%; }
 .wizard__bar { display: flex; gap: 6px; }
 .wizard__tick { flex: 1; height: 4px; border-radius: 2px; background-color: #e6e6e6; transition: background-color 0.3s; }
 .wizard__tick.is-done { background-color: var(--orange); }
-.paragraph-xs.wizard__count { margin-top: -20px; color: var(--gray-7); text-transform: uppercase; letter-spacing: 0.08em; font-size: 13px; }
+.paragraph-xs.wizard__count { margin: -12px 0 4px; color: var(--gray-7); text-transform: uppercase; letter-spacing: 0.08em; font-size: 13px; }
 .wstep { display: none; flex-direction: column; gap: 24px; }
 .wstep.is-active { display: flex; }
 .wstep__q { outline: none; }
@@ -2545,3 +2545,9 @@ img[src*="life-8"] { object-position: 50% 70%; }
   .vision-text-image-wrap { grid-template-columns: 1fr; gap: 28px; }
   .vision-image { height: 220px; }
 }
+
+/* "Step x of y" keeps ~20px from the progress ticks at every breakpoint
+   (the wizard gap shrinks on smaller screens, so the pull-up shrinks too) */
+@media (max-width: 991px) { .paragraph-xs.wizard__count { margin: -4px 0 4px; } }
+@media (max-width: 767px) { .paragraph-xs.wizard__count { margin: 0 0 4px; } }
+@media (max-width: 479px) { .paragraph-xs.wizard__count { margin: 4px 0 8px; } }
