@@ -1901,7 +1901,6 @@ img[src*="life-8"] { object-position: 50% 70%; }
   .how-it-works-card { padding-left: 40px; padding-right: 40px; }
   .how-it-works-card-content { gap: 52px; height: auto; }
   .how-it-works-image { width: 40px; height: 40px; }
-  .travel-card-image { display: none !important; }
   .discover-card-wrap { grid-template-columns: 8fr 4fr; }
   .arrow-text-wrap { gap: 24px; }
   .about-us-section { height: auto; padding-top: var(--section-pad); padding-bottom: var(--section-pad); display: flex; flex-direction: column; gap: 64px; }
@@ -2495,4 +2494,54 @@ img[src*="life-8"] { object-position: 50% 70%; }
   .contact-us-form-content { gap: 16px; }
   .contact-us-form .wizard { gap: 16px; }
   .about-banner-layout { gap: 32px; }
+}
+
+/* ---------- Phone: Travel for Comfort rows carry the car cutout ----------
+   The template hides the car images under 992px; we keep them, small and
+   on the right of each row, with the name and the seat/luggage counts on
+   the left. The row stays one tap target. */
+@media (max-width: 991px) {
+  .discover-card-wrap {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) 150px;
+    grid-template-rows: auto auto;
+    column-gap: 16px;
+    row-gap: 10px;
+    align-items: center;
+    padding: 8px 0 20px;
+  }
+  .arrow-text-wrap { grid-column: 1; grid-row: 1; gap: 16px; }
+  .image-person-count-wrap { display: contents; }
+  .travel-card-image, .travel-card-image.contain-car {
+    grid-column: 2;
+    grid-row: 1 / 3;
+    position: static;
+    display: block;
+    width: 100%;
+    height: 100px;
+    object-fit: contain;
+    opacity: 1 !important;
+    transform: none !important;
+    border-radius: 0;
+    pointer-events: none;
+    justify-self: end;
+  }
+  .count-wrap { grid-column: 1; grid-row: 2; flex-direction: row; gap: 20px; }
+  .count-content { gap: 8px; }
+}
+@media (max-width: 479px) {
+  .discover-card-wrap { grid-template-columns: minmax(0, 1fr) 124px; column-gap: 12px; padding-bottom: 16px; }
+  .travel-card-image, .travel-card-image.contain-car { height: 84px; }
+  .comfort-card-icon { width: 18px; height: 16px; }
+}
+
+/* ---------- Phone: About "Our promise" stacks text / image / text ---------- */
+@media (max-width: 767px) {
+  .vision-text-image-wrap { grid-template-columns: 1fr; gap: 32px; }
+  .vision-image { height: 260px; order: 0; }
+  .vision-text-button-wrap { gap: 24px; }
+}
+@media (max-width: 479px) {
+  .vision-text-image-wrap { grid-template-columns: 1fr; gap: 28px; }
+  .vision-image { height: 220px; }
 }
