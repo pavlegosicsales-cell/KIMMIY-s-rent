@@ -202,6 +202,19 @@
     });
 
     render();
+
+    /* arriving from a model page (contact.html?car=audi-a7): pick that car
+       and open the form on the dates step */
+    var want = new URLSearchParams(window.location.search).get("car");
+    var slugs = { "audi-a7": "Audi A7", "mercedes-s-class": "Mercedes-Benz S-Class", "bmw-7-series": "BMW 7 Series" };
+    if (want && slugs[want]) {
+      var pre = form.querySelector('.wopt[data-value="' + slugs[want] + '"]');
+      if (pre) {
+        var g = pre.closest(".wopts");
+        pre.classList.add("is-picked"); pre.setAttribute("aria-pressed", "true"); g.dataset.value = pre.dataset.value;
+        go(1);
+      }
+    }
   })();
 
   /* ---------- Clock ---------- */
